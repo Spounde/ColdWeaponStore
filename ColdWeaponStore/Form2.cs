@@ -34,29 +34,70 @@ namespace ColdWeaponStore
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if(!validation())
+            {
+                return;
+            }
 
             var clientAdapter = new ClientTableAdapter();
 
-            if (edit)
+            try
+            {
+                if (edit)
                 {
-                clientAdapter.UpdateQuery(
-                        textBox1.Text,
-                        textBox2.Text,
-                        textBox3.Text,
-                        textBox4.Text,
-                        id);
+                    clientAdapter.UpdateQuery(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, id);
                 }
                 else
                 {
-                clientAdapter.InsertQuery(
-                        textBox1.Text,
-                        textBox2.Text,
-                        textBox3.Text,
-                        textBox4.Text);
+                    clientAdapter.InsertQuery(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
                 }
-                Close();
-            
 
+                string action = edit ? "edited" : "inserted";
+                MessageBox.Show($"Client has been {action}");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private bool validation()
+        {
+            if (string.IsNullOrEmpty(textBox1.Text))
+            {
+                MessageBox.Show("Username is empty");
+                return false;
+            }
+            if (string.IsNullOrEmpty(textBox2.Text))
+            {
+                MessageBox.Show("Client phone number is empty");
+                return false;
+            }
+            var numberLength = textBox2.Text.ToCharArray().Length;
+            if(numberLength > 13)
+            {
+                MessageBox.Show("Uncorrect client phone number format");
+                return false;
+            }
+            if(string.IsNullOrEmpty(textBox3.Text))
+            {
+                MessageBox.Show("Email field is empty");
+                return false;
+            }
+            var letters = textBox3.Text.ToCharArray();
+            if(!letters.Contains('@'))
+            {
+                MessageBox.Show("Uncorrect email format");
+                return false;
+            }
+            if(string.IsNullOrEmpty(textBox4.Text))
+            {
+                MessageBox.Show("Address is empty");
+                return false;
+            }
+
+            return true;
         }
     }
 }
