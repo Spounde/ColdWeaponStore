@@ -48,8 +48,6 @@ namespace ColdWeaponStore {
         
         private global::System.Data.DataRelation relationFK__Weapon__Supplier__37A5467C;
         
-        private global::System.Data.DataRelation relationFK__Weapon__WeaponDe__36B12243;
-        
         private global::System.Data.DataRelation relationFK__WeaponCer__Weapo__2D27B809;
         
         private global::System.Data.DataRelation relationFK__WeaponDet__Weapo__276EDEB3;
@@ -382,7 +380,6 @@ namespace ColdWeaponStore {
             this.relationFK__OrderDeta__Weapo__35BCFE0A = this.Relations["FK__OrderDeta__Weapo__35BCFE0A"];
             this.relationFK__Orders__ClientID__31EC6D26 = this.Relations["FK__Orders__ClientID__31EC6D26"];
             this.relationFK__Weapon__Supplier__37A5467C = this.Relations["FK__Weapon__Supplier__37A5467C"];
-            this.relationFK__Weapon__WeaponDe__36B12243 = this.Relations["FK__Weapon__WeaponDe__36B12243"];
             this.relationFK__WeaponCer__Weapo__2D27B809 = this.Relations["FK__WeaponCer__Weapo__2D27B809"];
             this.relationFK__WeaponDet__Weapo__276EDEB3 = this.Relations["FK__WeaponDet__Weapo__276EDEB3"];
             this.relationFK__WeaponHis__Weapo__2A4B4B5E = this.Relations["FK__WeaponHis__Weapo__2A4B4B5E"];
@@ -428,10 +425,6 @@ namespace ColdWeaponStore {
                         this.tableSupplier.SupplierIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableWeapon.SupplierIDColumn}, false);
             this.Relations.Add(this.relationFK__Weapon__Supplier__37A5467C);
-            this.relationFK__Weapon__WeaponDe__36B12243 = new global::System.Data.DataRelation("FK__Weapon__WeaponDe__36B12243", new global::System.Data.DataColumn[] {
-                        this.tableWeaponDetails.WeaponDetailIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableWeapon.WeaponDetailIDColumn}, false);
-            this.Relations.Add(this.relationFK__Weapon__WeaponDe__36B12243);
             this.relationFK__WeaponCer__Weapo__2D27B809 = new global::System.Data.DataRelation("FK__WeaponCer__Weapo__2D27B809", new global::System.Data.DataColumn[] {
                         this.tableWeapon.WeaponIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableWeaponCertificate.WeaponIDColumn}, false);
@@ -1861,8 +1854,6 @@ namespace ColdWeaponStore {
             
             private global::System.Data.DataColumn columnPrice;
             
-            private global::System.Data.DataColumn columnWeaponDetailID;
-            
             private global::System.Data.DataColumn columnSupplierID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1924,14 +1915,6 @@ namespace ColdWeaponStore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn WeaponDetailIDColumn {
-                get {
-                    return this.columnWeaponDetailID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn SupplierIDColumn {
                 get {
                     return this.columnSupplierID;
@@ -1975,19 +1958,15 @@ namespace ColdWeaponStore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public WeaponRow AddWeaponRow(string WeaponName, decimal Price, WeaponDetailsRow parentWeaponDetailsRowByFK__Weapon__WeaponDe__36B12243, SupplierRow parentSupplierRowByFK__Weapon__Supplier__37A5467C) {
+            public WeaponRow AddWeaponRow(string WeaponName, decimal Price, SupplierRow parentSupplierRowByFK__Weapon__Supplier__37A5467C) {
                 WeaponRow rowWeaponRow = ((WeaponRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         WeaponName,
                         Price,
-                        null,
                         null};
-                if ((parentWeaponDetailsRowByFK__Weapon__WeaponDe__36B12243 != null)) {
-                    columnValuesArray[3] = parentWeaponDetailsRowByFK__Weapon__WeaponDe__36B12243[0];
-                }
                 if ((parentSupplierRowByFK__Weapon__Supplier__37A5467C != null)) {
-                    columnValuesArray[4] = parentSupplierRowByFK__Weapon__Supplier__37A5467C[0];
+                    columnValuesArray[3] = parentSupplierRowByFK__Weapon__Supplier__37A5467C[0];
                 }
                 rowWeaponRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowWeaponRow);
@@ -2021,7 +2000,6 @@ namespace ColdWeaponStore {
                 this.columnWeaponID = base.Columns["WeaponID"];
                 this.columnWeaponName = base.Columns["WeaponName"];
                 this.columnPrice = base.Columns["Price"];
-                this.columnWeaponDetailID = base.Columns["WeaponDetailID"];
                 this.columnSupplierID = base.Columns["SupplierID"];
             }
             
@@ -2034,8 +2012,6 @@ namespace ColdWeaponStore {
                 base.Columns.Add(this.columnWeaponName);
                 this.columnPrice = new global::System.Data.DataColumn("Price", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrice);
-                this.columnWeaponDetailID = new global::System.Data.DataColumn("WeaponDetailID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWeaponDetailID);
                 this.columnSupplierID = new global::System.Data.DataColumn("SupplierID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSupplierID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -3804,22 +3780,6 @@ namespace ColdWeaponStore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int WeaponDetailID {
-                get {
-                    try {
-                        return ((int)(this[this.tableWeapon.WeaponDetailIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'WeaponDetailID\' in table \'Weapon\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableWeapon.WeaponDetailIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int SupplierID {
                 get {
                     try {
@@ -3847,17 +3807,6 @@ namespace ColdWeaponStore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public WeaponDetailsRow WeaponDetailsRow {
-                get {
-                    return ((WeaponDetailsRow)(this.GetParentRow(this.Table.ParentRelations["FK__Weapon__WeaponDe__36B12243"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__Weapon__WeaponDe__36B12243"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsWeaponNameNull() {
                 return this.IsNull(this.tableWeapon.WeaponNameColumn);
             }
@@ -3878,18 +3827,6 @@ namespace ColdWeaponStore {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetPriceNull() {
                 this[this.tableWeapon.PriceColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsWeaponDetailIDNull() {
-                return this.IsNull(this.tableWeapon.WeaponDetailIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetWeaponDetailIDNull() {
-                this[this.tableWeapon.WeaponDetailIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4300,17 +4237,6 @@ namespace ColdWeaponStore {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetWeaponIDNull() {
                 this[this.tableWeaponDetails.WeaponIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public WeaponRow[] GetWeaponRows() {
-                if ((this.Table.ChildRelations["FK__Weapon__WeaponDe__36B12243"] == null)) {
-                    return new WeaponRow[0];
-                }
-                else {
-                    return ((WeaponRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Weapon__WeaponDe__36B12243"])));
-                }
             }
         }
         
@@ -7152,49 +7078,41 @@ SELECT SupplierID, SupplierName, SupplierPhoneNumber, SupplierEmail, SupplierAdd
             tableMapping.ColumnMappings.Add("WeaponID", "WeaponID");
             tableMapping.ColumnMappings.Add("WeaponName", "WeaponName");
             tableMapping.ColumnMappings.Add("Price", "Price");
-            tableMapping.ColumnMappings.Add("WeaponDetailID", "WeaponDetailID");
             tableMapping.ColumnMappings.Add("SupplierID", "SupplierID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Weapon] WHERE (([WeaponID] = @Original_WeaponID) AND ((@IsNull_WeaponName = 1 AND [WeaponName] IS NULL) OR ([WeaponName] = @Original_WeaponName)) AND ((@IsNull_Price = 1 AND [Price] IS NULL) OR ([Price] = @Original_Price)) AND ((@IsNull_WeaponDetailID = 1 AND [WeaponDetailID] IS NULL) OR ([WeaponDetailID] = @Original_WeaponDetailID)) AND ((@IsNull_SupplierID = 1 AND [SupplierID] IS NULL) OR ([SupplierID] = @Original_SupplierID)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Weapon] WHERE (([WeaponID] = @Original_WeaponID) AND ((@IsNull_WeaponName = 1 AND [WeaponName] IS NULL) OR ([WeaponName] = @Original_WeaponName)) AND ((@IsNull_Price = 1 AND [Price] IS NULL) OR ([Price] = @Original_Price)) AND ((@IsNull_SupplierID = 1 AND [SupplierID] IS NULL) OR ([SupplierID] = @Original_SupplierID)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WeaponID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_WeaponName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WeaponName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Price", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "Price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_WeaponDetailID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponDetailID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WeaponDetailID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponDetailID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SupplierID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SupplierID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Weapon] ([WeaponName], [Price], [WeaponDetailID], [SupplierID]" +
-                ") VALUES (@WeaponName, @Price, @WeaponDetailID, @SupplierID);\r\nSELECT WeaponID, " +
-                "WeaponName, Price, WeaponDetailID, SupplierID FROM Weapon WHERE (WeaponID = SCOP" +
-                "E_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Weapon] ([WeaponName], [Price], [SupplierID]) VALUES (@WeaponName, @" +
+                "Price, @SupplierID);\r\nSELECT WeaponID, WeaponName, Price, SupplierID FROM Weapon" +
+                " WHERE (WeaponID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponDetailID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponDetailID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SupplierID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Weapon] SET [WeaponName] = @WeaponName, [Price] = @Price, [WeaponDetailID] = @WeaponDetailID, [SupplierID] = @SupplierID WHERE (([WeaponID] = @Original_WeaponID) AND ((@IsNull_WeaponName = 1 AND [WeaponName] IS NULL) OR ([WeaponName] = @Original_WeaponName)) AND ((@IsNull_Price = 1 AND [Price] IS NULL) OR ([Price] = @Original_Price)) AND ((@IsNull_WeaponDetailID = 1 AND [WeaponDetailID] IS NULL) OR ([WeaponDetailID] = @Original_WeaponDetailID)) AND ((@IsNull_SupplierID = 1 AND [SupplierID] IS NULL) OR ([SupplierID] = @Original_SupplierID)));
-SELECT WeaponID, WeaponName, Price, WeaponDetailID, SupplierID FROM Weapon WHERE (WeaponID = @WeaponID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Weapon] SET [WeaponName] = @WeaponName, [Price] = @Price, [SupplierID] = @SupplierID WHERE (([WeaponID] = @Original_WeaponID) AND ((@IsNull_WeaponName = 1 AND [WeaponName] IS NULL) OR ([WeaponName] = @Original_WeaponName)) AND ((@IsNull_Price = 1 AND [Price] IS NULL) OR ([Price] = @Original_Price)) AND ((@IsNull_SupplierID = 1 AND [SupplierID] IS NULL) OR ([SupplierID] = @Original_SupplierID)));
+SELECT WeaponID, WeaponName, Price, SupplierID FROM Weapon WHERE (WeaponID = @WeaponID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponDetailID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponDetailID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SupplierID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WeaponID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_WeaponName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WeaponName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Price", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Price", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "Price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_WeaponDetailID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponDetailID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_WeaponDetailID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponDetailID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SupplierID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SupplierID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -7213,17 +7131,17 @@ SELECT WeaponID, WeaponName, Price, WeaponDetailID, SupplierID FROM Weapon WHERE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT WeaponID, WeaponName, Price, WeaponDetailID, SupplierID FROM dbo.Weapon";
+            this._commandCollection[0].CommandText = "SELECT WeaponID, WeaponName, Price, SupplierID FROM Weapon";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT WeaponID, WeaponName, Price, WeaponDetailID, SupplierID \r\nFROM dbo.Weapon\r" +
-                "\nWHERE [WeaponID] = @WeaponID;\r\n";
+            this._commandCollection[1].CommandText = "SELECT WeaponID, WeaponName, Price, SupplierID FROM Weapon WHERE (WeaponID = @Wea" +
+                "ponID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT * FROM Weapon ORDER BY Price ASC\r\n";
+            this._commandCollection[2].CommandText = "SELECT WeaponID, WeaponName, Price, SupplierID FROM Weapon ORDER BY Price";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
@@ -7367,7 +7285,7 @@ WHERE (WeaponID = @WeaponID);
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_WeaponID, string Original_WeaponName, global::System.Nullable<decimal> Original_Price, global::System.Nullable<int> Original_WeaponDetailID, global::System.Nullable<int> Original_SupplierID) {
+        public virtual int Delete(int Original_WeaponID, string Original_WeaponName, global::System.Nullable<decimal> Original_Price, global::System.Nullable<int> Original_SupplierID) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_WeaponID));
             if ((Original_WeaponName == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -7385,21 +7303,13 @@ WHERE (WeaponID = @WeaponID);
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Original_WeaponDetailID.HasValue == true)) {
+            if ((Original_SupplierID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_WeaponDetailID.Value));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_SupplierID.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Original_SupplierID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_SupplierID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -7421,7 +7331,7 @@ WHERE (WeaponID = @WeaponID);
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string WeaponName, global::System.Nullable<decimal> Price, global::System.Nullable<int> WeaponDetailID, global::System.Nullable<int> SupplierID) {
+        public virtual int Insert(string WeaponName, global::System.Nullable<decimal> Price, global::System.Nullable<int> SupplierID) {
             if ((WeaponName == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -7434,17 +7344,11 @@ WHERE (WeaponID = @WeaponID);
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((WeaponDetailID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(WeaponDetailID.Value));
+            if ((SupplierID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(SupplierID.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((SupplierID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(SupplierID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -7466,7 +7370,7 @@ WHERE (WeaponID = @WeaponID);
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string WeaponName, global::System.Nullable<decimal> Price, global::System.Nullable<int> WeaponDetailID, global::System.Nullable<int> SupplierID, int Original_WeaponID, string Original_WeaponName, global::System.Nullable<decimal> Original_Price, global::System.Nullable<int> Original_WeaponDetailID, global::System.Nullable<int> Original_SupplierID, int WeaponID) {
+        public virtual int Update(string WeaponName, global::System.Nullable<decimal> Price, global::System.Nullable<int> SupplierID, int Original_WeaponID, string Original_WeaponName, global::System.Nullable<decimal> Original_Price, global::System.Nullable<int> Original_SupplierID, int WeaponID) {
             if ((WeaponName == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -7479,52 +7383,38 @@ WHERE (WeaponID = @WeaponID);
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((WeaponDetailID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(WeaponDetailID.Value));
+            if ((SupplierID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(SupplierID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((SupplierID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(SupplierID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_WeaponID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_WeaponID));
             if ((Original_WeaponName == null)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_WeaponName));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_WeaponName));
             }
             if ((Original_Price.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(Original_Price.Value));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(Original_Price.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((Original_WeaponDetailID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_WeaponDetailID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             if ((Original_SupplierID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_SupplierID.Value));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_SupplierID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(WeaponID));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(WeaponID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7545,8 +7435,8 @@ WHERE (WeaponID = @WeaponID);
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string WeaponName, global::System.Nullable<decimal> Price, global::System.Nullable<int> WeaponDetailID, global::System.Nullable<int> SupplierID, int Original_WeaponID, string Original_WeaponName, global::System.Nullable<decimal> Original_Price, global::System.Nullable<int> Original_WeaponDetailID, global::System.Nullable<int> Original_SupplierID) {
-            return this.Update(WeaponName, Price, WeaponDetailID, SupplierID, Original_WeaponID, Original_WeaponName, Original_Price, Original_WeaponDetailID, Original_SupplierID, Original_WeaponID);
+        public virtual int Update(string WeaponName, global::System.Nullable<decimal> Price, global::System.Nullable<int> SupplierID, int Original_WeaponID, string Original_WeaponName, global::System.Nullable<decimal> Original_Price, global::System.Nullable<int> Original_SupplierID) {
+            return this.Update(WeaponName, Price, SupplierID, Original_WeaponID, Original_WeaponName, Original_Price, Original_SupplierID, Original_WeaponID);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9790,33 +9680,6 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateUpdatedRows(ColdWeaponStoreDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._supplierTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Supplier.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._supplierTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._weaponTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Weapon.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._weaponTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._weaponDetailsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.WeaponDetails.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._weaponDetailsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._clientTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Client.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -9826,12 +9689,30 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._supplierTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Supplier.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._supplierTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._ordersTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Orders.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._ordersTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._weaponTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Weapon.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._weaponTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -9850,6 +9731,15 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._weaponCertificateTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._weaponDetailsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.WeaponDetails.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._weaponDetailsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -9872,30 +9762,6 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateInsertedRows(ColdWeaponStoreDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._supplierTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Supplier.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._supplierTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._weaponTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Weapon.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._weaponTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._weaponDetailsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.WeaponDetails.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._weaponDetailsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._clientTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Client.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -9904,11 +9770,27 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._supplierTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Supplier.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._supplierTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._ordersTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Orders.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._ordersTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._weaponTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Weapon.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._weaponTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -9925,6 +9807,14 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._weaponCertificateTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._weaponDetailsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.WeaponDetails.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._weaponDetailsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -9954,6 +9844,14 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._weaponDetailsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.WeaponDetails.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._weaponDetailsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._weaponCertificateTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.WeaponCertificate.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -9970,30 +9868,6 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._ordersTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Orders.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._ordersTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._clientTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Client.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._clientTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._weaponDetailsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.WeaponDetails.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._weaponDetailsTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._weaponTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Weapon.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -10002,11 +9876,27 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._ordersTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Orders.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._ordersTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._supplierTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Supplier.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._supplierTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._clientTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Client.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._clientTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
