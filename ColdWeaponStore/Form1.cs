@@ -469,24 +469,34 @@ namespace ColdWeaponStore
         private void updateToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
-            if (dataGridView1.SelectedRows.Count == 0)
+            try
             {
-                MessageBox.Show("Select the row to delete.");
-                return;
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+
+                    object[] rowValues = new object[selectedRow.Cells.Count];
+                    for (int i = 0; i < selectedRow.Cells.Count; i++)
+                    {
+                        rowValues[i] = selectedRow.Cells[i].Value;
+                    }
+
+                    var edt = new EditForm2(
+                        Convert.ToInt32(rowValues[0]),     
+                        Convert.ToInt32(rowValues[1]),     
+                        Convert.ToDateTime(rowValues[2])  
+                    );
+
+                    edt.ShowDialog();
+
+                    ordersTableAdapter.Fill(coldWeaponStoreDataSet.Orders);
+                    coldWeaponStoreDataSet.AcceptChanges();
+                }
             }
-            edit = true;
-            var ordersRow = new ColdWeaponStoreDataSet.OrdersDataTable();
-            ordersTableAdapter.FillBy(ordersRow, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
-            object[] row = ordersRow.Rows[0].ItemArray;
-            var edt = new EditForm2(
-                Convert.ToInt32(row[0]),
-                Convert.ToInt32(row[1]),
-                Convert.ToDateTime(row[2]),
-                Convert.ToDecimal(row[3])
-            );
-            edt.ShowDialog();
-            ordersTableAdapter.Fill(coldWeaponStoreDataSet.Orders);
-            coldWeaponStoreDataSet.AcceptChanges();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -546,8 +556,7 @@ namespace ColdWeaponStore
                 Convert.ToInt32(row[0]), // OrderDetailID
                 Convert.ToInt32(row[1]), // OrderID
                 Convert.ToInt32(row[2]), // WeaponID
-                Convert.ToInt32(row[3]), // Amount
-                Convert.ToDecimal(row[4]) // PricePerPiece
+                Convert.ToInt32(row[3]) // Amount
             );
 
             edt.ShowDialog();

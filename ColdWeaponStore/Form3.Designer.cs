@@ -29,26 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.coldWeaponStoreDataSet = new ColdWeaponStore.ColdWeaponStoreDataSet();
+            this.clientComboBox = new System.Windows.Forms.ComboBox();
             this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.coldWeaponStoreDataSet = new ColdWeaponStore.ColdWeaponStoreDataSet();
             this.clientTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.ClientTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(362, 208);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
             // 
             // dateTimePicker1
             // 
@@ -86,34 +77,23 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Order Date";
             // 
-            // label3
+            // clientComboBox
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(246, 215);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Overall Sum";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DataSource = this.clientBindingSource;
-            this.comboBox1.DisplayMember = "ClientID";
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(362, 123);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 7;
-            // 
-            // coldWeaponStoreDataSet
-            // 
-            this.coldWeaponStoreDataSet.DataSetName = "ColdWeaponStoreDataSet";
-            this.coldWeaponStoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.clientComboBox.FormattingEnabled = true;
+            this.clientComboBox.Location = new System.Drawing.Point(362, 123);
+            this.clientComboBox.Name = "clientComboBox";
+            this.clientComboBox.Size = new System.Drawing.Size(121, 21);
+            this.clientComboBox.TabIndex = 7;
             // 
             // clientBindingSource
             // 
             this.clientBindingSource.DataMember = "Client";
             this.clientBindingSource.DataSource = this.coldWeaponStoreDataSet;
+            // 
+            // coldWeaponStoreDataSet
+            // 
+            this.coldWeaponStoreDataSet.DataSetName = "ColdWeaponStoreDataSet";
+            this.coldWeaponStoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // clientTableAdapter
             // 
@@ -124,31 +104,27 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.clientComboBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox2);
             this.Name = "EditForm2";
             this.Text = "Form3";
             this.Load += new System.EventHandler(this.EditForm2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox clientComboBox;
         private ColdWeaponStoreDataSet coldWeaponStoreDataSet;
         private System.Windows.Forms.BindingSource clientBindingSource;
         private ColdWeaponStoreDataSetTableAdapters.ClientTableAdapter clientTableAdapter;
