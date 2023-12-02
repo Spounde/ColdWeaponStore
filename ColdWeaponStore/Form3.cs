@@ -19,48 +19,66 @@ namespace ColdWeaponStore
         {
             InitializeComponent();
             edit = false;
+            dateTimePicker1.MaxDate = DateTime.Now;
         }
         public EditForm2(int id, int clientID, DateTime date, decimal overallSum)
     : this()
         {
             edit = true;
             this.id = id;
-            textBox1.Text = clientID.ToString();
+            comboBox1.Text = clientID.ToString();
             dateTimePicker1.Value = date;
             textBox2.Text = overallSum.ToString();
+        }
+
+        private void EditForm2_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'coldWeaponStoreDataSet.Client' table. You can move, or remove it, as needed.
+            this.clientTableAdapter.Fill(this.coldWeaponStoreDataSet.Client);
+
         }
         private void button1_Click(object sender, EventArgs e)
         {
             var ordersAdapter = new OrdersTableAdapter();
 
-            string formattedDate = dateTimePicker1.Value.ToString("yyyy-MM-dd"); 
+            try
+            {
+                string formattedDate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+                if (edit)
+                {
+                    ordersAdapter.UpdateQuery(
+                        Convert.ToInt32(comboBox1.Text),
+                        formattedDate,
+                        Convert.ToDecimal(textBox2.Text),
+                        id);
+                }
+                else
+                {
+                    ordersAdapter.InsertQuery(
+                        Convert.ToInt32(comboBox1.Text),
+                        formattedDate,
+                        Convert.ToDecimal(textBox2.Text));
+                }
+                string action = edit ? "edited" : "inserted";
 
-            if (edit)
-            {
-                ordersAdapter.UpdateQuery(
-                    Convert.ToInt32(textBox1.Text),
-                    formattedDate,
-                    Convert.ToDecimal(textBox2.Text),
-                    id);
+                MessageBox.Show($"Order has been {action}");
+                Close();
             }
-            else
+            catch (Exception ex)
             {
-                ordersAdapter.InsertQuery(
-                    Convert.ToInt32(textBox1.Text),
-                    formattedDate,
-                    Convert.ToDecimal(textBox2.Text));
+                MessageBox.Show(ex.Message);
             }
-            Close();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private bool validate()
         {
+            if(string.IsNullOrEmpty(comboBox1.Text))
+            {
+                MessageBox.Show("Client insn`t selected");
+                return false;
+            }
 
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
+            return true;   
         }
     }
 }

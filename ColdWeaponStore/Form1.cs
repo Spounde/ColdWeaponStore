@@ -42,8 +42,7 @@ namespace ColdWeaponStore
             dataGridView1.DataSource = clientBindingSource;
             bindingNavigator1.BindingSource = clientBindingSource;
             SetSearchControlsVisibility(false);
-
-
+            dataGridView1.MultiSelect = false;
 
         }
 
@@ -863,7 +862,7 @@ namespace ColdWeaponStore
 
         private void btnGenerateTopCustomersReport_Click(object sender, EventArgs e)
         {
-            Document pdfDocument = new Document(PageSize.A4);
+           /* Document pdfDocument = new Document(PageSize.A4);
             try
             {
                 string path = Path.Combine(Application.StartupPath, "sales_report.pdf");
@@ -915,13 +914,13 @@ namespace ColdWeaponStore
                 {
                     pdfDocument.Close();
                 }
-            }
+            }*/
         }
 
 
         private void btnGenerateSalesReport_Click_1(object sender, EventArgs e)
         {
-            Document pdfDocument = new Document(PageSize.A4);
+            /*Document pdfDocument = new Document(PageSize.A4);
             try
             {
                 string path = Path.Combine(Application.StartupPath, "sales_report.pdf");
@@ -982,7 +981,7 @@ namespace ColdWeaponStore
                 {
                     pdfDocument.Close();
                 }
-            }
+            }*/
         }
 
         private void Search_Click(object sender, EventArgs e)
