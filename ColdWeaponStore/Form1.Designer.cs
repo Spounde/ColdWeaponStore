@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.coldWeaponStoreDataSet = new ColdWeaponStore.ColdWeaponStoreDataSet();
             this.orderDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.supplierBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -63,7 +65,7 @@
             this.clientToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +81,7 @@
             this.weaponDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.weaponHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,8 +106,6 @@
             this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.coldWeaponStoreDataSet = new ColdWeaponStore.ColdWeaponStoreDataSet();
             this.clientTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.ClientTableAdapter();
             this.orderDetailTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.OrderDetailTableAdapter();
             this.ordersTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.OrdersTableAdapter();
@@ -113,9 +114,10 @@
             this.weaponCertificateTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.WeaponCertificateTableAdapter();
             this.weaponHistoryTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.WeaponHistoryTableAdapter();
             this.weaponDetailsTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.WeaponDetailsTableAdapter();
-            this.deleteToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).BeginInit();
@@ -126,8 +128,6 @@
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.weaponHistoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weaponDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -142,6 +142,16 @@
             // 
             this.clientBindingSource.DataMember = "Client";
             this.clientBindingSource.DataSource = this.bindingSource1;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = this.coldWeaponStoreDataSet;
+            this.bindingSource1.Position = 0;
+            // 
+            // coldWeaponStoreDataSet
+            // 
+            this.coldWeaponStoreDataSet.DataSetName = "ColdWeaponStoreDataSet";
+            this.coldWeaponStoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // orderDetailBindingSource
             // 
@@ -387,7 +397,7 @@
             this.clientToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addToolStripMenuItem,
             this.updateToolStripMenuItem,
-            this.deleateToolStripMenuItem});
+            this.clientDeleteToolStripMenuItem});
             this.clientToolStripMenuItem1.Name = "clientToolStripMenuItem1";
             this.clientToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.clientToolStripMenuItem1.Text = "Client";
@@ -396,23 +406,23 @@
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // updateToolStripMenuItem
             // 
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.updateToolStripMenuItem.Text = "Update";
             this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
-            // deleateToolStripMenuItem
+            // clientDeleteToolStripMenuItem
             // 
-            this.deleateToolStripMenuItem.Name = "deleateToolStripMenuItem";
-            this.deleateToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.deleateToolStripMenuItem.Text = "Deleate";
-            this.deleateToolStripMenuItem.Click += new System.EventHandler(this.deleateToolStripMenuItem_Click);
+            this.clientDeleteToolStripMenuItem.Name = "clientDeleteToolStripMenuItem";
+            this.clientDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientDeleteToolStripMenuItem.Text = "Delete";
+            this.clientDeleteToolStripMenuItem.Click += new System.EventHandler(this.clientDeleteToolStripMenu_Click);
             // 
             // ordersToolStripMenuItem1
             // 
@@ -520,16 +530,23 @@
             // addToolStripMenuItem4
             // 
             this.addToolStripMenuItem4.Name = "addToolStripMenuItem4";
-            this.addToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem4.Size = new System.Drawing.Size(112, 22);
             this.addToolStripMenuItem4.Text = "Add";
             this.addToolStripMenuItem4.Click += new System.EventHandler(this.addToolStripMenuItem4_Click);
             // 
             // updateToolStripMenuItem4
             // 
             this.updateToolStripMenuItem4.Name = "updateToolStripMenuItem4";
-            this.updateToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.updateToolStripMenuItem4.Size = new System.Drawing.Size(112, 22);
             this.updateToolStripMenuItem4.Text = "Update";
             this.updateToolStripMenuItem4.Click += new System.EventHandler(this.updateToolStripMenuItem4_Click);
+            // 
+            // deleteToolStripMenuItem5
+            // 
+            this.deleteToolStripMenuItem5.Name = "deleteToolStripMenuItem5";
+            this.deleteToolStripMenuItem5.Size = new System.Drawing.Size(112, 22);
+            this.deleteToolStripMenuItem5.Text = "Delete";
+            this.deleteToolStripMenuItem5.Click += new System.EventHandler(this.deleteToolStripMenuItem5_Click);
             // 
             // weaponHistoryToolStripMenuItem
             // 
@@ -727,16 +744,6 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "label2";
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = this.coldWeaponStoreDataSet;
-            this.bindingSource1.Position = 0;
-            // 
-            // coldWeaponStoreDataSet
-            // 
-            this.coldWeaponStoreDataSet.DataSetName = "ColdWeaponStoreDataSet";
-            this.coldWeaponStoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // clientTableAdapter
             // 
             this.clientTableAdapter.ClearBeforeFill = true;
@@ -769,13 +776,6 @@
             // 
             this.weaponDetailsTableAdapter.ClearBeforeFill = true;
             // 
-            // deleteToolStripMenuItem5
-            // 
-            this.deleteToolStripMenuItem5.Name = "deleteToolStripMenuItem5";
-            this.deleteToolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
-            this.deleteToolStripMenuItem5.Text = "Delete";
-            this.deleteToolStripMenuItem5.Click += new System.EventHandler(this.deleteToolStripMenuItem5_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -804,6 +804,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierBindingSource)).EndInit();
@@ -816,8 +818,6 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.weaponHistoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.weaponDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -871,7 +871,7 @@
         private System.Windows.Forms.ToolStripMenuItem clientToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clientDeleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem1;

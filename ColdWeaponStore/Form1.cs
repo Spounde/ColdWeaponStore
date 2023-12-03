@@ -218,13 +218,11 @@ namespace ColdWeaponStore
                 }
             }
 
-            // Форматирование даты для фильтра DataView
             string startDate = dateTimePickerStart.Value.ToString("MM/dd/yyyy");
             string endDate = dateTimePickerEnd.Value.ToString("MM/dd/yyyy");
 
             if (currentTable == "Orders")
             {
-                // Добавление условий фильтрации по дате
                 filterConditions.Add($"Date >= #{startDate}#");
                 filterConditions.Add($"Date <= #{endDate}#");
             }
@@ -243,10 +241,6 @@ namespace ColdWeaponStore
 
             ApplyFilter();
         }
-
-
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             UpdateFilter();
@@ -266,8 +260,6 @@ namespace ColdWeaponStore
                 ordersBindingSource.Sort = "OverallSum ASC";
                 dataGridView1.Refresh();
             }
-
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -284,10 +276,6 @@ namespace ColdWeaponStore
                 dataGridView1.Refresh();
             }
         }
-
-
-
-
 
         private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -428,7 +416,7 @@ namespace ColdWeaponStore
             coldWeaponStoreDataSet.AcceptChanges();
         }
 
-        private void deleateToolStripMenuItem_Click(object sender, EventArgs e)
+        private void clientDeleteToolStripMenu_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -437,24 +425,25 @@ namespace ColdWeaponStore
             }
 
             int clientId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            var orderDetailAdapter = new OrderDetailTableAdapter();
-            orderDetailAdapter.DeleteQueryByClientID(clientId);
 
+            DialogResult result = MessageBox.Show($"Do you want to delete client with id {clientId}?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+            if(result == DialogResult.Yes)
+            {
+                var orderDetailAdapter = new OrderDetailTableAdapter();
+                orderDetailAdapter.DeleteQueryByClientID(clientId);
 
-            // Затем удаляем связанные записи из Order
-            var ordersAdapter = new OrdersTableAdapter();
-            ordersAdapter.DeleteQueryForClientDelete(clientId);
+                var ordersAdapter = new OrdersTableAdapter();
+                ordersAdapter.DeleteQueryForClientDelete(clientId);
 
-            // Наконец, удаляем запись из Client
-            var clientAdapter = new ClientTableAdapter();
-            clientAdapter.DeleteQuery(clientId);
+                var clientAdapter = new ClientTableAdapter();
+                clientAdapter.DeleteQuery(clientId);
 
-            // Обновляем данные в DataSet
-            clientAdapter.Fill(coldWeaponStoreDataSet.Client);
-            ordersAdapter.Fill(coldWeaponStoreDataSet.Orders);
-            orderDetailAdapter.Fill(coldWeaponStoreDataSet.OrderDetail);
-            coldWeaponStoreDataSet.AcceptChanges();
+                clientAdapter.Fill(coldWeaponStoreDataSet.Client);
+                ordersAdapter.Fill(coldWeaponStoreDataSet.Orders);
+                orderDetailAdapter.Fill(coldWeaponStoreDataSet.OrderDetail);
+                coldWeaponStoreDataSet.AcceptChanges();
+            }
         }
 
         private void addToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -511,6 +500,7 @@ namespace ColdWeaponStore
 
             int orderId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
 
+            
             var orderDetailsAdapter = new OrderDetailTableAdapter();
 
             orderDetailsAdapter.DeleteQueryByOrderID(orderId);
@@ -526,9 +516,9 @@ namespace ColdWeaponStore
         private void addToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             edit = false;
-            var edt = new EditForm3(); // Используйте форму для добавления записи в OrderDetail
+            var edt = new EditForm3(); 
             edt.ShowDialog();
-            orderDetailTableAdapter.Fill(coldWeaponStoreDataSet.OrderDetail); // Обновите таблицу OrderDetail
+            orderDetailTableAdapter.Fill(coldWeaponStoreDataSet.OrderDetail);
             coldWeaponStoreDataSet.AcceptChanges();
         }
 
@@ -541,7 +531,7 @@ namespace ColdWeaponStore
             }
 
             edit = true;
-            int selectedOrderDetailId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value); // Предполагается, что первый столбец - это OrderDetailID
+            int selectedOrderDetailId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
             var orderDetailRow = new ColdWeaponStoreDataSet.OrderDetailDataTable();
             orderDetailTableAdapter.FillBy(orderDetailRow, selectedOrderDetailId);
 
@@ -553,14 +543,14 @@ namespace ColdWeaponStore
 
             object[] row = orderDetailRow.Rows[0].ItemArray;
             var edt = new EditForm3(
-                Convert.ToInt32(row[0]), // OrderDetailID
-                Convert.ToInt32(row[1]), // OrderID
-                Convert.ToInt32(row[2]), // WeaponID
-                Convert.ToInt32(row[3]) // Amount
+                Convert.ToInt32(row[0]), 
+                Convert.ToInt32(row[1]),
+                Convert.ToInt32(row[2]),
+                Convert.ToInt32(row[3])
             );
 
             edt.ShowDialog();
-            orderDetailTableAdapter.Fill(coldWeaponStoreDataSet.OrderDetail); // Обновите таблицу OrderDetail
+            orderDetailTableAdapter.Fill(coldWeaponStoreDataSet.OrderDetail);
             coldWeaponStoreDataSet.AcceptChanges();
         }
 
@@ -572,13 +562,17 @@ namespace ColdWeaponStore
                 return;
             }
 
-            int orderDetailId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value); // Предполагается, что первый столбец - это OrderDetailID
+            int orderDetailId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value); 
 
-            var orderDetailAdapter = new OrderDetailTableAdapter();
-            orderDetailAdapter.DeleteQuery(orderDetailId); // Удаление записи из OrderDetail
+            var result = MessageBox.Show($"Do you want to delete order details with id {orderDetailId}?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                var orderDetailAdapter = new OrderDetailTableAdapter();
+                orderDetailAdapter.DeleteQuery(orderDetailId);
 
-            orderDetailAdapter.Fill(coldWeaponStoreDataSet.OrderDetail); // Обновление данных в OrderDetail
-            coldWeaponStoreDataSet.AcceptChanges();
+                orderDetailAdapter.Fill(coldWeaponStoreDataSet.OrderDetail);
+                coldWeaponStoreDataSet.AcceptChanges();
+            }
         }
 
         private void databaseRedactionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -589,9 +583,8 @@ namespace ColdWeaponStore
         private void addToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             edit = false;
-            var edt = new EditForm4(); // Используйте форму для добавления записи в Weapon
-            edt.ShowDialog();
-            weaponTableAdapter.Fill(coldWeaponStoreDataSet.Weapon); // Обновите таблицу Weapon
+            var edt = new EditForm4();
+            weaponTableAdapter.Fill(coldWeaponStoreDataSet.Weapon); 
             coldWeaponStoreDataSet.AcceptChanges();
         }
 
@@ -604,7 +597,7 @@ namespace ColdWeaponStore
             }
 
             edit = true;
-            int selectedWeaponId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value); // Предполагается, что первый столбец - это WeaponID
+            int selectedWeaponId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value); 
             var weaponRow = new ColdWeaponStoreDataSet.WeaponDataTable();
             weaponTableAdapter.FillBy(weaponRow, selectedWeaponId);
 
@@ -616,28 +609,23 @@ namespace ColdWeaponStore
 
             object[] row = weaponRow.Rows[0].ItemArray;
             var edt = new EditForm4(
-                Convert.ToInt32(row[0]), // WeaponID
-                row[1].ToString(),       // WeaponName
-                Convert.ToDecimal(row[2]), // Price
-                Convert.ToInt32(row[3])  // SupplierID
+                Convert.ToInt32(row[0]), 
+                row[1].ToString(),       
+                Convert.ToDecimal(row[2]),
+                Convert.ToInt32(row[3]) 
             );
 
             edt.ShowDialog();
-            weaponTableAdapter.Fill(coldWeaponStoreDataSet.Weapon); // Обновите таблицу Weapon
+            weaponTableAdapter.Fill(coldWeaponStoreDataSet.Weapon);
             coldWeaponStoreDataSet.AcceptChanges();
         }
-
-
-
-
-
 
         private void addToolStripMenuItem4_Click(object sender, EventArgs e)
         {
             edit = false;
-            var edt = new EditForm5(); // Используйте форму для добавления записи в WeaponDetails
+            var edt = new EditForm5();
             edt.ShowDialog();
-            weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails); // Обновите таблицу WeaponDetails
+            weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails);
             coldWeaponStoreDataSet.AcceptChanges();
         }
 
@@ -650,7 +638,7 @@ namespace ColdWeaponStore
             }
 
             edit = true;
-            int selectedWeaponDetailId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value); // Предполагается, что первый столбец - это WeaponDetailID
+            int selectedWeaponDetailId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
             var weaponDetailsRow = new ColdWeaponStoreDataSet.WeaponDetailsDataTable();
             weaponDetailsTableAdapter.FillBy(weaponDetailsRow, selectedWeaponDetailId);
 
@@ -662,17 +650,17 @@ namespace ColdWeaponStore
 
             object[] row = weaponDetailsRow.Rows[0].ItemArray;
             var edt = new EditForm5(
-                Convert.ToInt32(row[0]), // WeaponDetailID
-                row[1].ToString(),       // WeaponMaterial
-                Convert.ToDecimal(row[2]), // WeaponLength
-                Convert.ToDecimal(row[3]), // WeaponWidth
-                Convert.ToDecimal(row[4]), // WeaponThickness
-                row[5].ToString(),       // WeaponType
-                Convert.ToInt32(row[6])  // WeaponID
+                Convert.ToInt32(row[0]), 
+                row[1].ToString(),       
+                Convert.ToDecimal(row[2]), 
+                Convert.ToDecimal(row[3]), 
+                Convert.ToDecimal(row[4]), 
+                row[5].ToString(),      
+                Convert.ToInt32(row[6])  
             );
 
             edt.ShowDialog();
-            weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails); // Обновите таблицу WeaponDetails
+            weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails); 
             coldWeaponStoreDataSet.AcceptChanges();
         }
 
@@ -701,9 +689,9 @@ namespace ColdWeaponStore
         private void addToolStripMenuItem5_Click(object sender, EventArgs e)
         {
             edit = false;
-            var edt = new EditForm6(); // Используйте форму для добавления записи в WeaponHistory
+            var edt = new EditForm6(); 
             edt.ShowDialog();
-            weaponHistoryTableAdapter.Fill(coldWeaponStoreDataSet.WeaponHistory); // Обновите таблицу WeaponHistory
+            weaponHistoryTableAdapter.Fill(coldWeaponStoreDataSet.WeaponHistory); 
             coldWeaponStoreDataSet.AcceptChanges();
         }
 
@@ -721,13 +709,13 @@ namespace ColdWeaponStore
             {
                 object[] row = weaponHistoryRow.Rows[0].ItemArray;
                 var edt = new EditForm6(
-                    Convert.ToInt32(row[0]), // WeaponHistoryID
-                    Convert.ToDateTime(row[1]), // DateAcquired
-                    row[2].ToString(), // Country
-                    Convert.ToInt32(row[3]) // WeaponID
+                    Convert.ToInt32(row[0]), 
+                    Convert.ToDateTime(row[1]), 
+                    row[2].ToString(), 
+                    Convert.ToInt32(row[3]) 
                 );
                 edt.ShowDialog();
-                weaponHistoryTableAdapter.Fill(coldWeaponStoreDataSet.WeaponHistory); // Обновите таблицу WeaponHistory
+                weaponHistoryTableAdapter.Fill(coldWeaponStoreDataSet.WeaponHistory); 
                 coldWeaponStoreDataSet.AcceptChanges();
             }
             else
@@ -745,20 +733,24 @@ namespace ColdWeaponStore
             }
 
             int weaponHistoryId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            var weaponHistoryAdapter = new WeaponHistoryTableAdapter();
+            DialogResult result = MessageBox.Show($"Do you want to delete weapon history with id {weaponHistoryId}?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                var weaponHistoryAdapter = new WeaponHistoryTableAdapter();
 
-            weaponHistoryAdapter.DeleteQuery(weaponHistoryId); // Удаление записи из WeaponHistory
+                weaponHistoryAdapter.DeleteQuery(weaponHistoryId);
 
-            weaponHistoryAdapter.Fill(coldWeaponStoreDataSet.WeaponHistory); // Обновление данных в WeaponHistory
-            coldWeaponStoreDataSet.AcceptChanges();
+                weaponHistoryAdapter.Fill(coldWeaponStoreDataSet.WeaponHistory);
+                coldWeaponStoreDataSet.AcceptChanges();
+            }
         }
 
         private void addToolStripMenuItem6_Click(object sender, EventArgs e)
         {
             edit = false;
-            var edt = new EditForm7(); // Используйте форму для добавления записи в WeaponCertificate
+            var edt = new EditForm7();
             edt.ShowDialog();
-            weaponCertificateTableAdapter.Fill(coldWeaponStoreDataSet.WeaponCertificate); // Обновите таблицу WeaponCertificate
+            weaponCertificateTableAdapter.Fill(coldWeaponStoreDataSet.WeaponCertificate);
             coldWeaponStoreDataSet.AcceptChanges();
         }
 
@@ -776,14 +768,14 @@ namespace ColdWeaponStore
             {
                 object[] row = weaponCertificateRow.Rows[0].ItemArray;
                 var edt = new EditForm7(
-                    Convert.ToInt32(row[0]), // CertificateID
-                    Convert.ToInt32(row[1]), // WeaponID
-                    row[2].ToString(), // CertificateNumber
-                    row[3].ToString(), // IssuingAuthority
-                    Convert.ToDateTime(row[4]) // DateOfCertificate
+                    Convert.ToInt32(row[0]), 
+                    Convert.ToInt32(row[1]),
+                    row[2].ToString(), 
+                    row[3].ToString(),
+                    Convert.ToDateTime(row[4])
                 );
                 edt.ShowDialog();
-                weaponCertificateTableAdapter.Fill(coldWeaponStoreDataSet.WeaponCertificate); // Обновите таблицу WeaponCertificate
+                weaponCertificateTableAdapter.Fill(coldWeaponStoreDataSet.WeaponCertificate); 
                 coldWeaponStoreDataSet.AcceptChanges();
             }
             else
@@ -801,24 +793,27 @@ namespace ColdWeaponStore
             }
 
             int certificateId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            var weaponCertificateAdapter = new WeaponCertificateTableAdapter();
 
-            weaponCertificateAdapter.DeleteQuery(certificateId); // Удаление записи из WeaponCertificate
+            DialogResult result = MessageBox.Show($"Do you want to delete weapon certificate with id {certificateId}?", "Заголовок", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            weaponCertificateAdapter.Fill(coldWeaponStoreDataSet.WeaponCertificate); // Обновление данных в WeaponCertificate
-            coldWeaponStoreDataSet.AcceptChanges();
+            if(result == DialogResult.Yes)
+            {
+                var weaponCertificateAdapter = new WeaponCertificateTableAdapter();
+
+                weaponCertificateAdapter.DeleteQuery(certificateId);
+
+                weaponCertificateAdapter.Fill(coldWeaponStoreDataSet.WeaponCertificate);
+                coldWeaponStoreDataSet.AcceptChanges();
+            }
         }
         private void ShowAverageWeaponPrice()
         {
-            // Проверяем, заполнена ли таблица оружия
             if (coldWeaponStoreDataSet.Weapon.Rows.Count > 0)
             {
-                // Вычисляем среднюю цену
                 var averagePrice = coldWeaponStoreDataSet.Weapon
                     .AsEnumerable()
                     .Average(row => row.Field<decimal>("Price"));
 
-                // Отображаем результат
                 MessageBox.Show($"Average price of a weapon: {averagePrice:C2}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -828,20 +823,17 @@ namespace ColdWeaponStore
         }
         private void ShowAverageOrderSum()
         {
-            // Проверяем, заполнена ли таблица заказов
             if (coldWeaponStoreDataSet.Orders.Rows.Count > 0)
             {
-                // Вычисляем среднюю сумму заказа
                 var averageOrderSum = coldWeaponStoreDataSet.Orders
                     .AsEnumerable()
                     .Average(row => row.Field<decimal>("OverallSum"));
 
-                // Отображаем результат
-                MessageBox.Show($"Средняя сумма заказа: {averageOrderSum:C2}", "Статистика", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Average cost of order: {averageOrderSum:C2}", "Statistics", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Таблица заказов пуста", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Orders table is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -864,9 +856,6 @@ namespace ColdWeaponStore
             }
 
         }
-
-
-
 
         private void btnGenerateTopCustomersReport_Click(object sender, EventArgs e)
         {
@@ -924,7 +913,6 @@ namespace ColdWeaponStore
                 }
             }*/
         }
-
 
         private void btnGenerateSalesReport_Click_1(object sender, EventArgs e)
         {
@@ -1043,20 +1031,23 @@ namespace ColdWeaponStore
                 return;
             }
             int weaponId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+            DialogResult result = MessageBox.Show($"Do you want to delete weapon with id {weaponId}?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                weaponHistoryTableAdapter.DeleteByWeaponID(weaponId);
+                weaponCertificateTableAdapter.DeleteByWeaponID(weaponId);
+                weaponDetailsTableAdapter.DeleteByWeaponID(weaponId);
+                orderDetailTableAdapter.DeleteByWeaponID(weaponId);
+                weaponTableAdapter.DeleteQuery(weaponId);
 
-            weaponHistoryTableAdapter.DeleteByWeaponID(weaponId);
-            weaponCertificateTableAdapter.DeleteByWeaponID(weaponId);
-            weaponDetailsTableAdapter.DeleteByWeaponID(weaponId);
-            orderDetailTableAdapter.DeleteByWeaponID(weaponId);
-            weaponTableAdapter.DeleteQuery(weaponId);
+                weaponTableAdapter.Fill(coldWeaponStoreDataSet.Weapon);
+                weaponHistoryTableAdapter.Fill(coldWeaponStoreDataSet.WeaponHistory);
+                weaponCertificateTableAdapter.Fill(coldWeaponStoreDataSet.WeaponCertificate);
+                weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails);
+                orderDetailTableAdapter.Fill(coldWeaponStoreDataSet.OrderDetail);
 
-            weaponTableAdapter.Fill(coldWeaponStoreDataSet.Weapon);
-            weaponHistoryTableAdapter.Fill(coldWeaponStoreDataSet.WeaponHistory);
-            weaponCertificateTableAdapter.Fill(coldWeaponStoreDataSet.WeaponCertificate);
-            weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails);
-            orderDetailTableAdapter.Fill(coldWeaponStoreDataSet.OrderDetail);
-
-            coldWeaponStoreDataSet.AcceptChanges();
+                coldWeaponStoreDataSet.AcceptChanges();
+            }
         }
 
         private void deleteToolStripMenuItem5_Click(object sender, EventArgs e)
@@ -1067,18 +1058,15 @@ namespace ColdWeaponStore
                 return;
             }
             int weaponDetailId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            DialogResult result = MessageBox.Show("Do you want delete?", "Заголовок", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show($"Do you want to delete weapon detail with id {weaponDetailId}?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                
+                weaponDetailsTableAdapter.DeleteQuery(weaponDetailId);
+                weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails);
+
+                coldWeaponStoreDataSet.AcceptChanges();
             }
-            
-
-            weaponDetailsTableAdapter.DeleteQuery(weaponDetailId);
-            weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails);
-
-            coldWeaponStoreDataSet.AcceptChanges();
         }
     }
 }
