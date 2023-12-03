@@ -1034,6 +1034,30 @@ namespace ColdWeaponStore
 
             ApplyFilter(searchFilter);
         }
+
+        private void deleteToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Select the row to delete.");
+                return;
+            }
+            int weaponId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+
+            weaponHistoryTableAdapter.DeleteByWeaponID(weaponId);
+            weaponCertificateTableAdapter.DeleteByWeaponID(weaponId);
+            weaponDetailsTableAdapter.DeleteByWeaponID(weaponId);
+            orderDetailTableAdapter.DeleteByWeaponID(weaponId);
+            weaponTableAdapter.DeleteQuery(weaponId);
+
+            weaponTableAdapter.Fill(coldWeaponStoreDataSet.Weapon);
+            weaponHistoryTableAdapter.Fill(coldWeaponStoreDataSet.WeaponHistory);
+            weaponCertificateTableAdapter.Fill(coldWeaponStoreDataSet.WeaponCertificate);
+            weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails);
+            orderDetailTableAdapter.Fill(coldWeaponStoreDataSet.OrderDetail);
+
+            coldWeaponStoreDataSet.AcceptChanges();
+        }
     }
 }
 
