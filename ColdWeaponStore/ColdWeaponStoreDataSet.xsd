@@ -214,7 +214,7 @@ SELECT OrderDetailID, OrderID, WeaponID, Amount, PricePerPiece FROM OrderDetail 
               <Mapping SourceColumn="PricePerPiece" DataSetColumn="PricePerPiece" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteByWeaponID" Modifier="Public" Name="DeleteByWeaponID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="DeleteByWeaponID">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteByWeaponID" Modifier="Public" Name="DeleteByWeaponID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteByWeaponID">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [dbo].[OrderDetail] WHERE [WeaponID] = @WeaponID;</CommandText>
@@ -224,7 +224,7 @@ SELECT OrderDetailID, OrderID, WeaponID, Amount, PricePerPiece FROM OrderDetail 
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteQuery">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [dbo].[OrderDetail] 
@@ -235,7 +235,7 @@ WHERE [OrderDetailID] = @OrderDetailID;</CommandText>
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQueryByClientID" Modifier="Public" Name="DeleteQueryByClientID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteQueryByClientID">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQueryByClientID" Modifier="Public" Name="DeleteQueryByClientID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="DeleteQueryByClientID">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE OD
@@ -249,7 +249,7 @@ WHERE O.ClientID = @ClientID;
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQueryByOrderID" Modifier="Public" Name="DeleteQueryByOrderID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="DeleteQueryByOrderID">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQueryByOrderID" Modifier="Public" Name="DeleteQueryByOrderID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="DeleteQueryByOrderID">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [dbo].[OrderDetail] WHERE [OrderID] = @OrderID;
@@ -273,7 +273,7 @@ WHERE [OrderDetailID] = @OrderDetailID;
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="InsertQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="InsertQuery">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO [dbo].[OrderDetail] ([OrderID], [WeaponID], [Amount],[PricePerPiece]) 
@@ -291,7 +291,7 @@ WHERE (OrderDetailID = SCOPE_IDENTITY());</CommandText>
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdateQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="UpdateQuery">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE [dbo].[OrderDetail]
@@ -585,7 +585,7 @@ SELECT WeaponID, WeaponName, Price, SupplierID FROM Weapon WHERE (WeaponID = @We
               <Mapping SourceColumn="SupplierID" DataSetColumn="SupplierID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="DeleteQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [dbo].[Weapon] 
@@ -614,7 +614,7 @@ WHERE [WeaponID] =@WeaponID;</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertQuery">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO [dbo].[Weapon] ([WeaponName], [Price], [SupplierID]) 
@@ -632,7 +632,7 @@ WHERE (WeaponID = SCOPE_IDENTITY());
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="UpdateQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="UpdateQuery">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE [dbo].[Weapon]
@@ -734,7 +734,7 @@ SELECT CertificateID, WeaponID, CertificateNumber, IssuingAuthority, DateOfCerti
               <Mapping SourceColumn="DateOfCertificate" DataSetColumn="DateOfCertificate" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteByWeaponID" Modifier="Public" Name="DeleteByWeaponID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="DeleteByWeaponID">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteByWeaponID" Modifier="Public" Name="DeleteByWeaponID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteByWeaponID">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [dbo].[WeaponCertificate] WHERE [WeaponID] = @WeaponID</CommandText>
@@ -744,7 +744,7 @@ SELECT CertificateID, WeaponID, CertificateNumber, IssuingAuthority, DateOfCerti
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteQuery">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM WeaponCertificate
@@ -769,7 +769,7 @@ WHERE CertificateID = @CertificateID;
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="InsertQuery">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO WeaponCertificate (WeaponID, CertificateNumber, IssuingAuthority, DateOfCertificate)
@@ -784,7 +784,7 @@ VALUES (@WeaponID, @CertificateNumber, @IssuingAuthority, @DateOfCertificate);
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="UpdateQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdateQuery">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE WeaponCertificate
@@ -889,12 +889,22 @@ SELECT WeaponDetailID, WeaponMaterial, WeaponLength, WeaponWidth, WeaponThicknes
               <Mapping SourceColumn="WeaponID" DataSetColumn="WeaponID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteByWeaponID" Modifier="Public" Name="DeleteByWeaponID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="DeleteByWeaponID">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteByWeaponID" Modifier="Public" Name="DeleteByWeaponID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteByWeaponID">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [dbo].[WeaponDetails] WHERE [WeaponID] = @WeaponID;</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="WeaponID" ColumnName="WeaponID" DataSourceName="ColdWeaponStore.dbo.WeaponDetails" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@WeaponID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="WeaponID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="DeleteQuery">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM [dbo].[WeaponDetails] WHERE [WeaponDetailID] = @Original_WeaponDetailID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Original_WeaponDetailID" ColumnName="WeaponDetailID" DataSourceName="ColdWeaponStore.dbo.WeaponDetails" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Original_WeaponDetailID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="WeaponDetailID" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
                   </DbCommand>
                 </DeleteCommand>
@@ -925,7 +935,7 @@ WHERE [WeaponID] = @WeaponID;
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertQuery">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO [dbo].[WeaponDetails] ([WeaponMaterial], [WeaponLength], [WeaponWidth], [WeaponThickness], [WeaponType], [WeaponID]) 
@@ -946,7 +956,7 @@ WHERE (WeaponDetailID = SCOPE_IDENTITY());
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="UpdateQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="UpdateQuery">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE [dbo].[WeaponDetails]
@@ -1038,7 +1048,7 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
               <Mapping SourceColumn="WeaponID" DataSetColumn="WeaponID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteByWeaponID" Modifier="Public" Name="DeleteByWeaponID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="DeleteByWeaponID">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteByWeaponID" Modifier="Public" Name="DeleteByWeaponID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteByWeaponID">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [dbo].[WeaponHistory] WHERE [WeaponID] = @WeaponID;</CommandText>
@@ -1048,7 +1058,7 @@ SELECT HistoryID, DateAcquired, Country, WeaponID FROM WeaponHistory WHERE (Hist
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQuery" Modifier="Public" Name="DeleteQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteQuery">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [dbo].[WeaponHistory] 
@@ -1073,7 +1083,7 @@ WHERE [HistoryID] = @HistoryID;
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertQuery" Modifier="Public" Name="InsertQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="InsertQuery">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO WeaponHistory (DateAcquired, Country, WeaponID)
@@ -1087,7 +1097,7 @@ VALUES (@DateAcquired, @Country, @WeaponID);
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="UpdateQuery">
+              <DbSource ConnectionRef="ColdWeaponStoreConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="UpdateQuery">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE WeaponHistory
@@ -1321,13 +1331,13 @@ WHERE HistoryID = @HistoryID;
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK__OrderDeta__Order__34C8D9D1" msdata:parent="Orders" msdata:child="OrderDetail" msdata:parentkey="OrderID" msdata:childkey="OrderID" msprop:Generator_UserParentTable="Orders" msprop:Generator_UserChildTable="OrderDetail" msprop:Generator_RelationVarName="relationFK__OrderDeta__Order__34C8D9D1" msprop:Generator_ChildPropName="GetOrderDetailRows" msprop:Generator_ParentPropName="OrdersRow" msprop:Generator_UserRelationName="FK__OrderDeta__Order__34C8D9D1" />
-      <msdata:Relationship name="FK__OrderDeta__Weapo__35BCFE0A" msdata:parent="Weapon" msdata:child="OrderDetail" msdata:parentkey="WeaponID" msdata:childkey="WeaponID" msprop:Generator_UserParentTable="Weapon" msprop:Generator_UserChildTable="OrderDetail" msprop:Generator_RelationVarName="relationFK__OrderDeta__Weapo__35BCFE0A" msprop:Generator_ChildPropName="GetOrderDetailRows" msprop:Generator_ParentPropName="WeaponRow" msprop:Generator_UserRelationName="FK__OrderDeta__Weapo__35BCFE0A" />
-      <msdata:Relationship name="FK__Orders__ClientID__31EC6D26" msdata:parent="Client" msdata:child="Orders" msdata:parentkey="ClientID" msdata:childkey="ClientID" msprop:Generator_UserParentTable="Client" msprop:Generator_UserChildTable="Orders" msprop:Generator_RelationVarName="relationFK__Orders__ClientID__31EC6D26" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="FK__Orders__ClientID__31EC6D26" msprop:Generator_ParentPropName="ClientRow" />
-      <msdata:Relationship name="FK__Weapon__Supplier__37A5467C" msdata:parent="Supplier" msdata:child="Weapon" msdata:parentkey="SupplierID" msdata:childkey="SupplierID" msprop:Generator_UserParentTable="Supplier" msprop:Generator_UserChildTable="Weapon" msprop:Generator_RelationVarName="relationFK__Weapon__Supplier__37A5467C" msprop:Generator_ChildPropName="GetWeaponRows" msprop:Generator_UserRelationName="FK__Weapon__Supplier__37A5467C" msprop:Generator_ParentPropName="SupplierRow" />
-      <msdata:Relationship name="FK__WeaponCer__Weapo__2D27B809" msdata:parent="Weapon" msdata:child="WeaponCertificate" msdata:parentkey="WeaponID" msdata:childkey="WeaponID" msprop:Generator_UserParentTable="Weapon" msprop:Generator_UserChildTable="WeaponCertificate" msprop:Generator_RelationVarName="relationFK__WeaponCer__Weapo__2D27B809" msprop:Generator_ChildPropName="GetWeaponCertificateRows" msprop:Generator_UserRelationName="FK__WeaponCer__Weapo__2D27B809" msprop:Generator_ParentPropName="WeaponRow" />
-      <msdata:Relationship name="FK__WeaponDet__Weapo__276EDEB3" msdata:parent="Weapon" msdata:child="WeaponDetails" msdata:parentkey="WeaponID" msdata:childkey="WeaponID" msprop:Generator_UserParentTable="Weapon" msprop:Generator_UserChildTable="WeaponDetails" msprop:Generator_RelationVarName="relationFK__WeaponDet__Weapo__276EDEB3" msprop:Generator_ChildPropName="GetWeaponDetailsRows" msprop:Generator_UserRelationName="FK__WeaponDet__Weapo__276EDEB3" msprop:Generator_ParentPropName="WeaponRow" />
-      <msdata:Relationship name="FK__WeaponHis__Weapo__2A4B4B5E" msdata:parent="Weapon" msdata:child="WeaponHistory" msdata:parentkey="WeaponID" msdata:childkey="WeaponID" msprop:Generator_UserParentTable="Weapon" msprop:Generator_UserChildTable="WeaponHistory" msprop:Generator_RelationVarName="relationFK__WeaponHis__Weapo__2A4B4B5E" msprop:Generator_ChildPropName="GetWeaponHistoryRows" msprop:Generator_UserRelationName="FK__WeaponHis__Weapo__2A4B4B5E" msprop:Generator_ParentPropName="WeaponRow" />
+      <msdata:Relationship name="FK__OrderDeta__Order__34C8D9D1" msdata:parent="Orders" msdata:child="OrderDetail" msdata:parentkey="OrderID" msdata:childkey="OrderID" msprop:Generator_UserParentTable="Orders" msprop:Generator_UserChildTable="OrderDetail" msprop:Generator_RelationVarName="relationFK__OrderDeta__Order__34C8D9D1" msprop:Generator_ChildPropName="GetOrderDetailRows" msprop:Generator_UserRelationName="FK__OrderDeta__Order__34C8D9D1" msprop:Generator_ParentPropName="OrdersRow" />
+      <msdata:Relationship name="FK__OrderDeta__Weapo__35BCFE0A" msdata:parent="Weapon" msdata:child="OrderDetail" msdata:parentkey="WeaponID" msdata:childkey="WeaponID" msprop:Generator_UserParentTable="Weapon" msprop:Generator_UserChildTable="OrderDetail" msprop:Generator_RelationVarName="relationFK__OrderDeta__Weapo__35BCFE0A" msprop:Generator_ChildPropName="GetOrderDetailRows" msprop:Generator_UserRelationName="FK__OrderDeta__Weapo__35BCFE0A" msprop:Generator_ParentPropName="WeaponRow" />
+      <msdata:Relationship name="FK__Orders__ClientID__31EC6D26" msdata:parent="Client" msdata:child="Orders" msdata:parentkey="ClientID" msdata:childkey="ClientID" msprop:Generator_UserParentTable="Client" msprop:Generator_UserChildTable="Orders" msprop:Generator_RelationVarName="relationFK__Orders__ClientID__31EC6D26" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_ParentPropName="ClientRow" msprop:Generator_UserRelationName="FK__Orders__ClientID__31EC6D26" />
+      <msdata:Relationship name="FK__Weapon__Supplier__37A5467C" msdata:parent="Supplier" msdata:child="Weapon" msdata:parentkey="SupplierID" msdata:childkey="SupplierID" msprop:Generator_UserParentTable="Supplier" msprop:Generator_UserChildTable="Weapon" msprop:Generator_RelationVarName="relationFK__Weapon__Supplier__37A5467C" msprop:Generator_ChildPropName="GetWeaponRows" msprop:Generator_ParentPropName="SupplierRow" msprop:Generator_UserRelationName="FK__Weapon__Supplier__37A5467C" />
+      <msdata:Relationship name="FK__WeaponCer__Weapo__2D27B809" msdata:parent="Weapon" msdata:child="WeaponCertificate" msdata:parentkey="WeaponID" msdata:childkey="WeaponID" msprop:Generator_UserParentTable="Weapon" msprop:Generator_UserChildTable="WeaponCertificate" msprop:Generator_RelationVarName="relationFK__WeaponCer__Weapo__2D27B809" msprop:Generator_ChildPropName="GetWeaponCertificateRows" msprop:Generator_ParentPropName="WeaponRow" msprop:Generator_UserRelationName="FK__WeaponCer__Weapo__2D27B809" />
+      <msdata:Relationship name="FK__WeaponDet__Weapo__276EDEB3" msdata:parent="Weapon" msdata:child="WeaponDetails" msdata:parentkey="WeaponID" msdata:childkey="WeaponID" msprop:Generator_UserParentTable="Weapon" msprop:Generator_UserChildTable="WeaponDetails" msprop:Generator_RelationVarName="relationFK__WeaponDet__Weapo__276EDEB3" msprop:Generator_ChildPropName="GetWeaponDetailsRows" msprop:Generator_ParentPropName="WeaponRow" msprop:Generator_UserRelationName="FK__WeaponDet__Weapo__276EDEB3" />
+      <msdata:Relationship name="FK__WeaponHis__Weapo__2A4B4B5E" msdata:parent="Weapon" msdata:child="WeaponHistory" msdata:parentkey="WeaponID" msdata:childkey="WeaponID" msprop:Generator_UserParentTable="Weapon" msprop:Generator_UserChildTable="WeaponHistory" msprop:Generator_RelationVarName="relationFK__WeaponHis__Weapo__2A4B4B5E" msprop:Generator_ChildPropName="GetWeaponHistoryRows" msprop:Generator_ParentPropName="WeaponRow" msprop:Generator_UserRelationName="FK__WeaponHis__Weapo__2A4B4B5E" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

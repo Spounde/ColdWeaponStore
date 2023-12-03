@@ -1058,6 +1058,28 @@ namespace ColdWeaponStore
 
             coldWeaponStoreDataSet.AcceptChanges();
         }
+
+        private void deleteToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Select the row to delete.");
+                return;
+            }
+            int weaponDetailId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+            DialogResult result = MessageBox.Show("Do you want delete?", "Заголовок", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                
+            }
+            
+
+            weaponDetailsTableAdapter.DeleteQuery(weaponDetailId);
+            weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails);
+
+            coldWeaponStoreDataSet.AcceptChanges();
+        }
     }
 }
 
