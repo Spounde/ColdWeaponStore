@@ -1,6 +1,8 @@
 ﻿using ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace ColdWeaponStore
@@ -70,27 +72,39 @@ namespace ColdWeaponStore
             }
         }
 
+        private void fillComboBox()
+        {
+            var ids = new List<int>();
+            string sqlCommand = @"SELECT DISTINCT WeaponID FROM Weapon;";
+            string connectionString = @"Data Source=DESKTOP-JGN4EB0;Initial Catalog=ColdWeaponStore;Integrated Security=True";
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new SqlCommand(sqlCommand, connection))
+                {
+                    var reader = command.ExecuteReader();
+                    while(reader.Read())
+                    {
+                        ids.Add((int)reader[0]);
+                    }
+                }
+            }
+            foreach(var id in ids)
+            {
+                comboBox1.Items.Add(id);
+            }
+        }
+
+
         private void EditForm5_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'coldWeaponStoreDataSet.WeaponDetails' table. You can move, or remove it, as needed.
             this.weaponDetailsTableAdapter.Fill(this.coldWeaponStoreDataSet.WeaponDetails);
 
-            DataTable weaponDetailsTable = coldWeaponStoreDataSet.Tables["WeaponDetails"];
-
-            if (weaponDetailsTable != null)
+            fillComboBox();
+            if(comboBox1.Items.Contains(weaponID))
             {
-                foreach (DataRow row in weaponDetailsTable.Rows)
-                {
-                    if (row["WeaponDetailsID"] != DBNull.Value)
-                    {
-                        comboBox1.Items.Add(row["WeaponDetailsID"]);
-                    }
-                }
-            }
-
-            if (comboBox1.Items.Contains(weaponID))
-            {
-                comboBox1.Text = weaponID.ToString();
+                comboBox1.SelectedIndex = comboBox1.Items.IndexOf(weaponID);
             }
         }
 
