@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using iTextSharp.text;
+using System.IO;
+using iTextSharp.text.pdf;
 
 namespace ColdWeaponStore
 {
@@ -855,7 +858,7 @@ namespace ColdWeaponStore
 
         private void btnGenerateTopCustomersReport_Click(object sender, EventArgs e)
         {
-           /* Document pdfDocument = new Document(PageSize.A4);
+            Document pdfDocument = new Document(PageSize.A4);
             try
             {
                 string path = Path.Combine(Application.StartupPath, "sales_report.pdf");
@@ -907,12 +910,12 @@ namespace ColdWeaponStore
                 {
                     pdfDocument.Close();
                 }
-            }*/
+            }
         }
 
         private void btnGenerateSalesReport_Click_1(object sender, EventArgs e)
         {
-            /*Document pdfDocument = new Document(PageSize.A4);
+            Document pdfDocument = new Document(PageSize.A4);
             try
             {
                 string path = Path.Combine(Application.StartupPath, "sales_report.pdf");
@@ -925,7 +928,6 @@ namespace ColdWeaponStore
                 pdfDocument.Add(new Paragraph("Sales Report", titleFont));
                 pdfDocument.Add(Chunk.NEWLINE);
 
-                // 1. Total number of sales by weapon type
                 pdfDocument.Add(new Paragraph("1. Total number of sales by weapon type:", regularFont));
                 var salesByType = coldWeaponStoreDataSet.WeaponDetails
                             .AsEnumerable()
@@ -942,7 +944,6 @@ namespace ColdWeaponStore
                     pdfDocument.Add(new Paragraph($"{type.Type}: {type.Count}", regularFont));
                 }
 
-                // 2. Total monthly revenue
                 pdfDocument.Add(new Paragraph("2. Total monthly revenue:", regularFont));
                 var incomeByMonth = coldWeaponStoreDataSet.Orders
                              .AsEnumerable()
@@ -973,7 +974,7 @@ namespace ColdWeaponStore
                 {
                     pdfDocument.Close();
                 }
-            }*/
+            }
         }
 
         private void Search_Click(object sender, EventArgs e)
