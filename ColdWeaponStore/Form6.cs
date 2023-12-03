@@ -1,5 +1,6 @@
 ﻿using ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace ColdWeaponStore
@@ -9,6 +10,7 @@ namespace ColdWeaponStore
     {
         readonly bool edit;
         private int id;
+        private int weaponID;
         public EditForm5()
         {
             InitializeComponent();
@@ -24,7 +26,7 @@ namespace ColdWeaponStore
             textBox3.Text = weaponWidth.ToString();
             textBox4.Text = weaponThickness.ToString();
             textBox5.Text = weaponType;
-            comboBox1.Text = weaponId.ToString();
+            weaponID = weaponId;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -72,6 +74,24 @@ namespace ColdWeaponStore
         {
             // TODO: This line of code loads data into the 'coldWeaponStoreDataSet.WeaponDetails' table. You can move, or remove it, as needed.
             this.weaponDetailsTableAdapter.Fill(this.coldWeaponStoreDataSet.WeaponDetails);
+
+            DataTable weaponDetailsTable = coldWeaponStoreDataSet.Tables["WeaponDetails"];
+
+            if (weaponDetailsTable != null)
+            {
+                foreach (DataRow row in weaponDetailsTable.Rows)
+                {
+                    if (row["WeaponDetailsID"] != DBNull.Value)
+                    {
+                        comboBox1.Items.Add(row["WeaponDetailsID"]);
+                    }
+                }
+            }
+
+            if (comboBox1.Items.Contains(weaponID))
+            {
+                comboBox1.Text = weaponID.ToString();
+            }
         }
 
         private bool validation()

@@ -42,11 +42,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.coldWeaponStoreDataSet = new ColdWeaponStore.ColdWeaponStoreDataSet();
             this.weaponDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.coldWeaponStoreDataSet = new ColdWeaponStore.ColdWeaponStoreDataSet();
             this.weaponDetailsTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.WeaponDetailsTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weaponDetailsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -150,23 +150,21 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.DataSource = this.weaponDetailsBindingSource;
-            this.comboBox1.DisplayMember = "WeaponDetailID";
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(358, 211);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(100, 21);
             this.comboBox1.TabIndex = 13;
             // 
-            // coldWeaponStoreDataSet
-            // 
-            this.coldWeaponStoreDataSet.DataSetName = "ColdWeaponStoreDataSet";
-            this.coldWeaponStoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // weaponDetailsBindingSource
             // 
             this.weaponDetailsBindingSource.DataMember = "WeaponDetails";
             this.weaponDetailsBindingSource.DataSource = this.coldWeaponStoreDataSet;
+            // 
+            // coldWeaponStoreDataSet
+            // 
+            this.coldWeaponStoreDataSet.DataSetName = "ColdWeaponStoreDataSet";
+            this.coldWeaponStoreDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // weaponDetailsTableAdapter
             // 
@@ -193,8 +191,8 @@
             this.Name = "EditForm5";
             this.Text = "Form6";
             this.Load += new System.EventHandler(this.EditForm5_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.weaponDetailsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coldWeaponStoreDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
