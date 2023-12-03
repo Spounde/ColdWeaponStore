@@ -324,9 +324,6 @@ namespace ColdWeaponStore
             currentTable = "Weapon";
             label1.Text = "Please enter ID of weapon wich details you want to see";
             label2.Text = "Weapon";
-
-
-
         }
 
 
@@ -1066,6 +1063,18 @@ namespace ColdWeaponStore
 
                 coldWeaponStoreDataSet.AcceptChanges();
             }
+        }
+
+        private void supplierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = supplierBindingSource;
+            bindingNavigator1.BindingSource = supplierBindingSource;
+            SetSearchControlsVisibility(true);
+            dataGridView1.Refresh();
+            bindingNavigator1.Refresh();
+            currentTable = "Supplier";
+            label1.Text = "Please enter ID of supplier wich details you want to see";
+            label2.Text = "Supplier";
         }
     }
 }
