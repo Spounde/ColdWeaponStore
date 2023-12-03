@@ -7145,35 +7145,37 @@ SELECT WeaponID, WeaponName, Price, SupplierID FROM Weapon WHERE (WeaponID = @We
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"INSERT INTO [dbo].[Weapon] ([WeaponName], [Price], [WeaponDetailID], [SupplierID]) 
-VALUES (@WeaponName, @Price, @WeaponDetailID, @SupplierID);
-
-SELECT WeaponID, WeaponName, Price, WeaponDetailID, SupplierID 
-FROM Weapon 
-WHERE (WeaponID = SCOPE_IDENTITY());
-";
+            this._commandCollection[3].CommandText = "INSERT INTO [dbo].[Weapon] ([WeaponName], [Price], [SupplierID]) \r\nVALUES (@Weapo" +
+                "nName, @Price, @SupplierID);\r\n\r\nSELECT WeaponID, WeaponName, Price, SupplierID \r" +
+                "\nFROM Weapon \r\nWHERE (WeaponID = SCOPE_IDENTITY());\r\n";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponDetailID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponDetailID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SupplierID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = @"UPDATE [dbo].[Weapon]
 SET [WeaponName] = @WeaponName, 
     [Price] = @Price, 
-    [WeaponDetailID] = @WeaponDetailID, 
     [SupplierID] = @SupplierID 
 WHERE [WeaponID] = @WeaponID;
 
-SELECT WeaponID, WeaponName, Price, WeaponDetailID, SupplierID 
+SELECT WeaponID, WeaponName, Price, SupplierID 
 FROM Weapon 
 WHERE (WeaponID = @WeaponID);
+
+UPDATE [dbo].[OrderDetail]
+SET [PricePerPiece] = (
+    SELECT w.Price * [dbo].[OrderDetail].Amount
+    FROM [dbo].[Weapon] w
+    WHERE w.WeaponID = [dbo].[OrderDetail].WeaponID
+);
+
+
 ";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponDetailID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponDetailID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SupplierID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WeaponID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "WeaponID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
@@ -7443,7 +7445,7 @@ WHERE (WeaponID = @WeaponID);
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertQuery(string WeaponName, global::System.Nullable<decimal> Price, global::System.Nullable<int> WeaponDetailID, global::System.Nullable<int> SupplierID) {
+        public virtual int InsertQuery(string WeaponName, global::System.Nullable<decimal> Price, global::System.Nullable<int> SupplierID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             if ((WeaponName == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -7457,17 +7459,11 @@ WHERE (WeaponID = @WeaponID);
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((WeaponDetailID.HasValue == true)) {
-                command.Parameters[2].Value = ((int)(WeaponDetailID.Value));
+            if ((SupplierID.HasValue == true)) {
+                command.Parameters[2].Value = ((int)(SupplierID.Value));
             }
             else {
                 command.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((SupplierID.HasValue == true)) {
-                command.Parameters[3].Value = ((int)(SupplierID.Value));
-            }
-            else {
-                command.Parameters[3].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -7490,7 +7486,7 @@ WHERE (WeaponID = @WeaponID);
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateQuery(string WeaponName, global::System.Nullable<decimal> Price, global::System.Nullable<int> WeaponDetailID, global::System.Nullable<int> SupplierID, int WeaponID) {
+        public virtual int UpdateQuery(string WeaponName, global::System.Nullable<decimal> Price, global::System.Nullable<int> SupplierID, int WeaponID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((WeaponName == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -7504,19 +7500,13 @@ WHERE (WeaponID = @WeaponID);
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((WeaponDetailID.HasValue == true)) {
-                command.Parameters[2].Value = ((int)(WeaponDetailID.Value));
+            if ((SupplierID.HasValue == true)) {
+                command.Parameters[2].Value = ((int)(SupplierID.Value));
             }
             else {
                 command.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((SupplierID.HasValue == true)) {
-                command.Parameters[3].Value = ((int)(SupplierID.Value));
-            }
-            else {
-                command.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            command.Parameters[4].Value = ((int)(WeaponID));
+            command.Parameters[3].Value = ((int)(WeaponID));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

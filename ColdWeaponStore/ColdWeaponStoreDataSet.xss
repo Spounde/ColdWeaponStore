@@ -7,12 +7,12 @@
 <DiagramLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ex:showrelationlabel="False" ViewPortX="-44" ViewPortY="-47" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:Client" ZOrder="15" X="985" Y="70" Height="248" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
-    <Shape ID="DesignTable:OrderDetail" ZOrder="1" X="333" Y="70" Height="248" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
-    <Shape ID="DesignTable:Orders" ZOrder="5" X="666" Y="73" Height="229" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
+    <Shape ID="DesignTable:OrderDetail" ZOrder="3" X="333" Y="70" Height="248" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
+    <Shape ID="DesignTable:Orders" ZOrder="6" X="666" Y="73" Height="229" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
     <Shape ID="DesignTable:Supplier" ZOrder="14" X="1011" Y="493" Height="172" Width="193" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
-    <Shape ID="DesignTable:Weapon" ZOrder="4" X="348" Y="450" Height="229" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="24" OldDataTableHeight="0" SplitterPosition="102" />
-    <Shape ID="DesignTable:WeaponCertificate" ZOrder="2" X="3" Y="227" Height="172" Width="253" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
-    <Shape ID="DesignTable:WeaponDetails" ZOrder="3" X="890" Y="794" Height="286" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="159" />
+    <Shape ID="DesignTable:Weapon" ZOrder="1" X="348" Y="450" Height="229" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="24" OldDataTableHeight="0" SplitterPosition="102" />
+    <Shape ID="DesignTable:WeaponCertificate" ZOrder="4" X="3" Y="227" Height="172" Width="253" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
+    <Shape ID="DesignTable:WeaponDetails" ZOrder="5" X="890" Y="794" Height="286" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="159" />
     <Shape ID="DesignTable:WeaponHistory" ZOrder="13" X="-7" Y="773" Height="153" Width="235" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
   </Shapes>
   <Connectors>
@@ -80,7 +80,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__WeaponDet__Weapo__276EDEB3" ZOrder="7" LineWidth="11">
+    <Connector ID="DesignRelation:FK__WeaponDet__Weapo__276EDEB3" ZOrder="2" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>508</X>
@@ -96,7 +96,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK__WeaponHis__Weapo__2A4B4B5E" ZOrder="6" LineWidth="11">
+    <Connector ID="DesignRelation:FK__WeaponHis__Weapo__2A4B4B5E" ZOrder="7" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>365</X>

@@ -619,8 +619,7 @@ namespace ColdWeaponStore
                 Convert.ToInt32(row[0]), // WeaponID
                 row[1].ToString(),       // WeaponName
                 Convert.ToDecimal(row[2]), // Price
-                Convert.ToInt32(row[3]), // WeaponDetailID
-                Convert.ToInt32(row[4])  // SupplierID
+                Convert.ToInt32(row[3])  // SupplierID
             );
 
             edt.ShowDialog();

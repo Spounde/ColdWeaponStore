@@ -12,6 +12,10 @@
 
 namespace ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters
 {
+    partial class WeaponTableAdapter
+    {
+    }
+
     partial class WeaponCertificateTableAdapter
     {
     }
