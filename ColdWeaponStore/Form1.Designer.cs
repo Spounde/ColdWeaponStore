@@ -91,6 +91,10 @@
             this.addToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.weaponHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.weaponDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -395,7 +399,8 @@
             this.weaponToolStripMenuItem1,
             this.weaponDetailsToolStripMenuItem1,
             this.weaponHistoryToolStripMenuItem,
-            this.weaponCertificateToolStripMenuItem1});
+            this.weaponCertificateToolStripMenuItem1,
+            this.supplierToolStripMenuItem1});
             this.databaseRedactionToolStripMenuItem.Name = "databaseRedactionToolStripMenuItem";
             this.databaseRedactionToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
             this.databaseRedactionToolStripMenuItem.Text = "Database redaction ";
@@ -408,7 +413,7 @@
             this.updateToolStripMenuItem,
             this.clientDeleteToolStripMenuItem});
             this.clientToolStripMenuItem1.Name = "clientToolStripMenuItem1";
-            this.clientToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
+            this.clientToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.clientToolStripMenuItem1.Text = "Client";
             this.clientToolStripMenuItem1.Click += new System.EventHandler(this.clientToolStripMenuItem1_Click);
             // 
@@ -440,7 +445,7 @@
             this.updateToolStripMenuItem1,
             this.deleteToolStripMenuItem});
             this.ordersToolStripMenuItem1.Name = "ordersToolStripMenuItem1";
-            this.ordersToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
+            this.ordersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.ordersToolStripMenuItem1.Text = "Orders";
             // 
             // addToolStripMenuItem1
@@ -471,7 +476,7 @@
             this.updateToolStripMenuItem2,
             this.deleteToolStripMenuItem1});
             this.orderDetailsToolStripMenuItem1.Name = "orderDetailsToolStripMenuItem1";
-            this.orderDetailsToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
+            this.orderDetailsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.orderDetailsToolStripMenuItem1.Text = "OrderDetails";
             // 
             // addToolStripMenuItem2
@@ -502,7 +507,7 @@
             this.updateToolStripMenuItem3,
             this.deleteToolStripMenuItem4});
             this.weaponToolStripMenuItem1.Name = "weaponToolStripMenuItem1";
-            this.weaponToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
+            this.weaponToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.weaponToolStripMenuItem1.Text = "Weapon";
             // 
             // addToolStripMenuItem3
@@ -533,7 +538,7 @@
             this.updateToolStripMenuItem4,
             this.deleteToolStripMenuItem5});
             this.weaponDetailsToolStripMenuItem1.Name = "weaponDetailsToolStripMenuItem1";
-            this.weaponDetailsToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
+            this.weaponDetailsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.weaponDetailsToolStripMenuItem1.Text = "WeaponDetails";
             // 
             // addToolStripMenuItem4
@@ -564,7 +569,7 @@
             this.updateToolStripMenuItem5,
             this.deleteToolStripMenuItem2});
             this.weaponHistoryToolStripMenuItem.Name = "weaponHistoryToolStripMenuItem";
-            this.weaponHistoryToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.weaponHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.weaponHistoryToolStripMenuItem.Text = "WeaponHistory";
             // 
             // addToolStripMenuItem5
@@ -595,7 +600,7 @@
             this.updateToolStripMenuItem6,
             this.deleteToolStripMenuItem3});
             this.weaponCertificateToolStripMenuItem1.Name = "weaponCertificateToolStripMenuItem1";
-            this.weaponCertificateToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
+            this.weaponCertificateToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.weaponCertificateToolStripMenuItem1.Text = "WeaponCertificate";
             // 
             // addToolStripMenuItem6
@@ -618,6 +623,37 @@
             this.deleteToolStripMenuItem3.Size = new System.Drawing.Size(112, 22);
             this.deleteToolStripMenuItem3.Text = "Delete";
             this.deleteToolStripMenuItem3.Click += new System.EventHandler(this.deleteToolStripMenuItem3_Click);
+            // 
+            // supplierToolStripMenuItem1
+            // 
+            this.supplierToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem7,
+            this.updateToolStripMenuItem7,
+            this.deleteToolStripMenuItem6});
+            this.supplierToolStripMenuItem1.Name = "supplierToolStripMenuItem1";
+            this.supplierToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.supplierToolStripMenuItem1.Text = "Supplier";
+            // 
+            // addToolStripMenuItem7
+            // 
+            this.addToolStripMenuItem7.Name = "addToolStripMenuItem7";
+            this.addToolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem7.Text = "Add";
+            this.addToolStripMenuItem7.Click += new System.EventHandler(this.addToolStripMenuItem7_Click);
+            // 
+            // updateToolStripMenuItem7
+            // 
+            this.updateToolStripMenuItem7.Name = "updateToolStripMenuItem7";
+            this.updateToolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.updateToolStripMenuItem7.Text = "Update";
+            this.updateToolStripMenuItem7.Click += new System.EventHandler(this.updateToolStripMenuItem7_Click);
+            // 
+            // deleteToolStripMenuItem6
+            // 
+            this.deleteToolStripMenuItem6.Name = "deleteToolStripMenuItem6";
+            this.deleteToolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem6.Text = "Delete";
+            this.deleteToolStripMenuItem6.Click += new System.EventHandler(this.deleteToolStripMenuItem6_Click);
             // 
             // weaponHistoryBindingSource
             // 
@@ -919,6 +955,10 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem supplierToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supplierToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem6;
     }
 }
 
