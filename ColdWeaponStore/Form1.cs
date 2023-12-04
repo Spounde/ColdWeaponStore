@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace ColdWeaponStore
 {
@@ -1075,6 +1076,92 @@ namespace ColdWeaponStore
             currentTable = "Supplier";
             label1.Text = "Please enter ID of supplier wich details you want to see";
             label2.Text = "Supplier";
+        }
+
+        private void addToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            edit = false;
+            var form = new Form9();
+            form.ShowDialog();
+            supplierTableAdapter.Fill(coldWeaponStoreDataSet.Supplier);
+            coldWeaponStoreDataSet.AcceptChanges();
+        }
+
+        private void updateToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Select the row to edit.");
+                return;
+            }
+            edit = true;
+            var supplierRow = new ColdWeaponStoreDataSet.SupplierDataTable();
+            supplierTableAdapter.FillBy(supplierRow, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+            if (supplierRow.Rows.Count > 0)
+            {
+                object[] row = supplierRow.Rows[0].ItemArray;
+                var edt = new Form9(
+                    Convert.ToInt32(row[0]), 
+                    row[1].ToString(),
+                    row[2].ToString(), 
+                    row[3].ToString(),
+                    row[4].ToString()
+                );
+                edt.ShowDialog();
+                supplierTableAdapter.Fill(coldWeaponStoreDataSet.Supplier); 
+                coldWeaponStoreDataSet.AcceptChanges();
+            }
+            else
+            {
+                MessageBox.Show("No data was found for the selected Weapon Certificate ID.");
+            }
+        }
+
+        private void deleteToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            int supplierId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+            DialogResult result = MessageBox.Show($"Do you want to delete supplier with id {supplierId}?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                var weaponIds = new List<int>();
+                string connectionString = "Data Source=DESKTOP-JGN4EB0;Initial Catalog=ColdWeaponStore;Integrated Security=True";
+                string query = @"SELECT WeaponID FROM Weapon WHERE SupplierID = @supplierId";
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.Add("@supplierId", SqlDbType.Int).Value = supplierId;
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                weaponIds.Add((int)reader[0]);
+                            }
+                        }
+                    }
+                }
+
+                foreach (var weaponId in weaponIds)
+                {
+                    weaponHistoryTableAdapter.DeleteByWeaponID(weaponId);
+                    weaponCertificateTableAdapter.DeleteByWeaponID(weaponId);
+                    weaponDetailsTableAdapter.DeleteByWeaponID(weaponId);
+                    orderDetailTableAdapter.DeleteByWeaponID(weaponId);
+                    weaponTableAdapter.DeleteQuery(weaponId);
+
+                    weaponTableAdapter.Fill(coldWeaponStoreDataSet.Weapon);
+                    weaponHistoryTableAdapter.Fill(coldWeaponStoreDataSet.WeaponHistory);
+                    weaponCertificateTableAdapter.Fill(coldWeaponStoreDataSet.WeaponCertificate);
+                    weaponDetailsTableAdapter.Fill(coldWeaponStoreDataSet.WeaponDetails);
+                    orderDetailTableAdapter.Fill(coldWeaponStoreDataSet.OrderDetail);
+                }
+
+                supplierTableAdapter.DeleteQuery(supplierId);
+                supplierTableAdapter.Fill(coldWeaponStoreDataSet.Supplier);
+                coldWeaponStoreDataSet.AcceptChanges();
+            }
         }
     }
 }
