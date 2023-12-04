@@ -9,6 +9,7 @@ using iTextSharp.text;
 using System.IO;
 using iTextSharp.text.pdf;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace ColdWeaponStore
@@ -16,6 +17,91 @@ namespace ColdWeaponStore
     public partial class Form1 : Form
     {
         private bool edit;
+        private string currentTable = "Client";
+        private string currentFilter = "";
+        private Dictionary<string, List<string>> tablesWithColums = new Dictionary<string, List<string>>()
+        {
+            { 
+                "Client", new List<string>
+                {
+                    "ClientID",
+                    "ClientName",
+                    "ClientPhoneNumber",
+                    "ClientEmail",
+                    "ClientAddress"
+                }
+            },
+            { 
+                "Orders", new List<string>
+                {
+                    "OrderID",
+                    "ClientID",
+                    "Date",
+                    "OverallSum"
+                }
+            },
+            { 
+                "OrderDetails", new List<string>
+                {
+                   "OrderDetailID",
+                   "OrderID",
+                   "WeaponID",
+                   "Amount",
+                   "PricePerPiece"
+                }
+            },
+            { 
+                "Weapon", new List<string>
+                {
+                    "WeaponID",
+                    "WeaponName",
+                    "Price",
+                    "SupplierID"
+                }
+            },
+            { 
+                "WeaponCertificate", new List<string>
+                {
+                    "CertificateID",
+                    "WeaponID",
+                    "CertificateNumber",
+                    "IssuingAuthority",
+                    "DateOfCertificate"
+                }
+            },
+            { 
+                "WeaponHistory", new List<string>
+                {
+                    "HistoryID",
+                    "DateAcquired",
+                    "Country",
+                    "WeaponID"
+                }
+            },
+            { 
+                "Supplier", new List<string>
+                {
+                    "SupplierID",
+                    "SupplierName",
+                    "SupplierPhoneNumber",
+                    "SupplierEmail",
+                    "SupplierAddress"
+                }
+            },
+            { 
+                "WeaponDetails", new List<string>
+                {
+                    "WeaponDetailsID",
+                    "WeaponMaterial",
+                    "WeaponLength",
+                    "WeaponWidth",
+                    "WeaponThickness",
+                    "WeaponType",
+                    "WeaponID"
+                }
+            },
+
+        };
 
         public Form1()
         {
@@ -23,6 +109,19 @@ namespace ColdWeaponStore
 
             textBoxMinPrice.Text = "0";
             textBoxMaxPrice.Text = "10000";
+        }
+
+        private void setValuesForSearchCombobox()
+        {
+            comboBox1.Text = string.Empty;
+            if (tablesWithColums.TryGetValue(currentTable, out var values))
+            {
+                comboBox1.Items.Clear();
+                foreach(var item in values)
+                {
+                    comboBox1.Items.Add(item);
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -78,13 +177,6 @@ namespace ColdWeaponStore
             }
         }
 
-
-
-
-        private string currentTable = "Client";
-        private string currentFilter = "";
-
-
         private void clientToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -100,6 +192,7 @@ namespace ColdWeaponStore
             label1.Text = "Please enter Client name  you want to see";
             label2.Text = "Client";
 
+            setValuesForSearchCombobox();
         }
         private void ShowClientWithMostOrders()
         {
@@ -291,7 +384,7 @@ namespace ColdWeaponStore
             currentTable = "Orders";
             label1.Text = "Please enter ID of order wich details you want to see";
             label2.Text = "Orders";
-
+            setValuesForSearchCombobox();
         }
 
 
@@ -301,22 +394,12 @@ namespace ColdWeaponStore
 
 
             bindingNavigator1.BindingSource = orderDetailBindingSource;
-            SetSearchControlsVisibility(false);
+            SetSearchControlsVisibility(true);
             dataGridView1.Refresh();
             bindingNavigator1.Refresh();
             label2.Text = "OrderDetails";
-        }
-
-        private void suppliersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dataGridView1.DataSource = supplierBindingSource;
-
-
-            bindingNavigator1.BindingSource = supplierBindingSource;
-            SetSearchControlsVisibility(false);
-            dataGridView1.Refresh();
-            bindingNavigator1.Refresh();
-            label2.Text = "Suppliers";
+            currentTable = "OrderDetails";
+            setValuesForSearchCombobox();
         }
 
         private void weaponToolStripMenuItem_Click(object sender, EventArgs e)
@@ -329,6 +412,7 @@ namespace ColdWeaponStore
             currentTable = "Weapon";
             label1.Text = "Please enter ID of weapon wich details you want to see";
             label2.Text = "Weapon";
+            setValuesForSearchCombobox();
         }
 
 
@@ -342,6 +426,7 @@ namespace ColdWeaponStore
             bindingNavigator1.Refresh();
             SetSearchControlsVisibility(true);
             label2.Text = "WeaponDetails";
+            setValuesForSearchCombobox();
         }
         private void ShowAverageLengthByWeaponType()
         {
@@ -674,6 +759,9 @@ namespace ColdWeaponStore
             SetSearchControlsVisibility(false);
             dataGridView1.Refresh();
             bindingNavigator1.Refresh();
+            currentTable = "WeaponHistory";
+            setValuesForSearchCombobox();
+
         }
 
         private void weaponCertificateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -685,6 +773,9 @@ namespace ColdWeaponStore
             SetSearchControlsVisibility(false);
             dataGridView1.Refresh();
             bindingNavigator1.Refresh();
+            currentTable = "WeaponCertificate";
+            setValuesForSearchCombobox();
+
         }
 
         private void addToolStripMenuItem5_Click(object sender, EventArgs e)
@@ -863,14 +954,14 @@ namespace ColdWeaponStore
             Document pdfDocument = new Document(PageSize.A4);
             try
             {
-                string path = Path.Combine(Application.StartupPath, "sales_report.pdf");
+                string path = Path.Combine(Application.StartupPath, "top_customers_report.pdf");
                 PdfWriter.GetInstance(pdfDocument, new FileStream(path, FileMode.Create));
                 pdfDocument.Open();
 
                 var titleFont = FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.BOLD, new iTextSharp.text.BaseColor(0, 0, 0));
                 var regularFont = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, new iTextSharp.text.BaseColor(0, 0, 0));
 
-                pdfDocument.Add(new Paragraph("Sales Report", titleFont));
+                pdfDocument.Add(new Paragraph("Top Customer Report", titleFont));
                 pdfDocument.Add(Chunk.NEWLINE);
 
                 var allCustomers = coldWeaponStoreDataSet.Orders
@@ -981,45 +1072,15 @@ namespace ColdWeaponStore
 
         private void Search_Click(object sender, EventArgs e)
         {
-            string searchText = textBox1.Text.Trim();
-            string searchFilter = "";
+            var bindingSource = dataGridView1.DataSource as BindingSource;
+            if (bindingSource != null)
+            {
+                bindingSource.Filter = string.Empty;
+                dataGridView1.DataSource = bindingSource;
 
-            if (string.IsNullOrEmpty(searchText))
-            {
-                ApplyFilter();
-                return;
+                textBox1.Text = string.Empty;
+                comboBox1.Text = string.Empty;
             }
-
-            if (currentTable == "Client")
-            {
-                searchFilter = $"ClientName LIKE '%{searchText}%'";
-            }
-            else if (currentTable == "Orders")
-            {
-                if (int.TryParse(searchText, out int orderId))
-                {
-                    searchFilter = $"OrderID = {orderId}";
-                }
-                else
-                {
-                    MessageBox.Show("Invalid Order ID");
-                    return;
-                }
-            }
-            else if (currentTable == "Weapon")
-            {
-                if (int.TryParse(searchText, out int weaponId))
-                {
-                    searchFilter = $"WeaponID = {weaponId}";
-                }
-                else
-                {
-                    MessageBox.Show("Invalid Weapon ID");
-                    return;
-                }
-            }
-
-            ApplyFilter(searchFilter);
         }
 
         private void deleteToolStripMenuItem4_Click(object sender, EventArgs e)
@@ -1078,6 +1139,8 @@ namespace ColdWeaponStore
             currentTable = "Supplier";
             label1.Text = "Please enter ID of supplier wich details you want to see";
             label2.Text = "Supplier";
+            setValuesForSearchCombobox();
+
         }
 
         private void addToolStripMenuItem7_Click(object sender, EventArgs e)
@@ -1163,6 +1226,39 @@ namespace ColdWeaponStore
                 supplierTableAdapter.DeleteQuery(supplierId);
                 supplierTableAdapter.Fill(coldWeaponStoreDataSet.Supplier);
                 coldWeaponStoreDataSet.AcceptChanges();
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            var column = comboBox1.SelectedItem.ToString();
+            var value = textBox1.Text;
+
+            var source = dataGridView1.DataSource as BindingSource;
+            if(!string.IsNullOrEmpty(value) && value != null)
+            {
+                string filterExpression = "";
+
+                if (int.TryParse(value, out _))
+                {
+                    filterExpression = $"{column} = {value}";
+                }
+                else
+                {
+                    filterExpression = $"{column} LIKE '%{value}%'";
+                }
+
+                try
+                {
+                    source.Filter = filterExpression;
+                    dataGridView1.DataSource = source;
+                }
+                catch
+                {
+                    filterExpression = $"{column} LIKE '%{value}%'";
+                    source.Filter = filterExpression;
+                    dataGridView1.DataSource = source;
+                }
             }
         }
     }

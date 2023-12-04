@@ -56,7 +56,6 @@
             this.clientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.orderDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.suppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weaponToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weaponDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weaponHistoryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,6 +118,7 @@
             this.weaponCertificateTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.WeaponCertificateTableAdapter();
             this.weaponHistoryTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.WeaponHistoryTableAdapter();
             this.weaponDetailsTableAdapter = new ColdWeaponStore.ColdWeaponStoreDataSetTableAdapters.WeaponDetailsTableAdapter();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -314,7 +314,6 @@
             this.databaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientToolStripMenuItem,
             this.ordersToolStripMenuItem,
-            this.suppliersToolStripMenuItem,
             this.weaponToolStripMenuItem,
             this.supplierToolStripMenuItem});
             this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
@@ -324,7 +323,7 @@
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clientToolStripMenuItem.Text = "Client";
             this.clientToolStripMenuItem.Click += new System.EventHandler(this.clientToolStripMenuItem_Click);
             // 
@@ -333,7 +332,7 @@
             this.ordersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.orderDetailsToolStripMenuItem});
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ordersToolStripMenuItem.Text = "Orders";
             this.ordersToolStripMenuItem.Click += new System.EventHandler(this.ordersToolStripMenuItem_Click);
             // 
@@ -344,13 +343,6 @@
             this.orderDetailsToolStripMenuItem.Text = "OrderDetails";
             this.orderDetailsToolStripMenuItem.Click += new System.EventHandler(this.orderDetailsToolStripMenuItem_Click);
             // 
-            // suppliersToolStripMenuItem
-            // 
-            this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
-            this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.suppliersToolStripMenuItem.Text = "Suppliers";
-            this.suppliersToolStripMenuItem.Click += new System.EventHandler(this.suppliersToolStripMenuItem_Click);
-            // 
             // weaponToolStripMenuItem
             // 
             this.weaponToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -358,35 +350,35 @@
             this.weaponHistoryToolStripMenuItem1,
             this.weaponCertificateToolStripMenuItem});
             this.weaponToolStripMenuItem.Name = "weaponToolStripMenuItem";
-            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.weaponToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.weaponToolStripMenuItem.Text = "Weapon";
             this.weaponToolStripMenuItem.Click += new System.EventHandler(this.weaponToolStripMenuItem_Click);
             // 
             // weaponDetailsToolStripMenuItem
             // 
             this.weaponDetailsToolStripMenuItem.Name = "weaponDetailsToolStripMenuItem";
-            this.weaponDetailsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.weaponDetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.weaponDetailsToolStripMenuItem.Text = "WeaponDetails";
             this.weaponDetailsToolStripMenuItem.Click += new System.EventHandler(this.weaponDetailsToolStripMenuItem_Click);
             // 
             // weaponHistoryToolStripMenuItem1
             // 
             this.weaponHistoryToolStripMenuItem1.Name = "weaponHistoryToolStripMenuItem1";
-            this.weaponHistoryToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
+            this.weaponHistoryToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.weaponHistoryToolStripMenuItem1.Text = "WeaponHistory";
             this.weaponHistoryToolStripMenuItem1.Click += new System.EventHandler(this.weaponHistoryToolStripMenuItem1_Click);
             // 
             // weaponCertificateToolStripMenuItem
             // 
             this.weaponCertificateToolStripMenuItem.Name = "weaponCertificateToolStripMenuItem";
-            this.weaponCertificateToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.weaponCertificateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.weaponCertificateToolStripMenuItem.Text = "WeaponCertificate";
             this.weaponCertificateToolStripMenuItem.Click += new System.EventHandler(this.weaponCertificateToolStripMenuItem_Click);
             // 
             // supplierToolStripMenuItem
             // 
             this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
-            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.supplierToolStripMenuItem.Text = "Supplier";
             this.supplierToolStripMenuItem.Click += new System.EventHandler(this.supplierToolStripMenuItem_Click);
             // 
@@ -413,7 +405,7 @@
             this.updateToolStripMenuItem,
             this.clientDeleteToolStripMenuItem});
             this.clientToolStripMenuItem1.Name = "clientToolStripMenuItem1";
-            this.clientToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.clientToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
             this.clientToolStripMenuItem1.Text = "Client";
             this.clientToolStripMenuItem1.Click += new System.EventHandler(this.clientToolStripMenuItem1_Click);
             // 
@@ -445,7 +437,7 @@
             this.updateToolStripMenuItem1,
             this.deleteToolStripMenuItem});
             this.ordersToolStripMenuItem1.Name = "ordersToolStripMenuItem1";
-            this.ordersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ordersToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
             this.ordersToolStripMenuItem1.Text = "Orders";
             // 
             // addToolStripMenuItem1
@@ -476,7 +468,7 @@
             this.updateToolStripMenuItem2,
             this.deleteToolStripMenuItem1});
             this.orderDetailsToolStripMenuItem1.Name = "orderDetailsToolStripMenuItem1";
-            this.orderDetailsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.orderDetailsToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
             this.orderDetailsToolStripMenuItem1.Text = "OrderDetails";
             // 
             // addToolStripMenuItem2
@@ -507,7 +499,7 @@
             this.updateToolStripMenuItem3,
             this.deleteToolStripMenuItem4});
             this.weaponToolStripMenuItem1.Name = "weaponToolStripMenuItem1";
-            this.weaponToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.weaponToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
             this.weaponToolStripMenuItem1.Text = "Weapon";
             // 
             // addToolStripMenuItem3
@@ -538,7 +530,7 @@
             this.updateToolStripMenuItem4,
             this.deleteToolStripMenuItem5});
             this.weaponDetailsToolStripMenuItem1.Name = "weaponDetailsToolStripMenuItem1";
-            this.weaponDetailsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.weaponDetailsToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
             this.weaponDetailsToolStripMenuItem1.Text = "WeaponDetails";
             // 
             // addToolStripMenuItem4
@@ -569,7 +561,7 @@
             this.updateToolStripMenuItem5,
             this.deleteToolStripMenuItem2});
             this.weaponHistoryToolStripMenuItem.Name = "weaponHistoryToolStripMenuItem";
-            this.weaponHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.weaponHistoryToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.weaponHistoryToolStripMenuItem.Text = "WeaponHistory";
             // 
             // addToolStripMenuItem5
@@ -600,7 +592,7 @@
             this.updateToolStripMenuItem6,
             this.deleteToolStripMenuItem3});
             this.weaponCertificateToolStripMenuItem1.Name = "weaponCertificateToolStripMenuItem1";
-            this.weaponCertificateToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.weaponCertificateToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
             this.weaponCertificateToolStripMenuItem1.Text = "WeaponCertificate";
             // 
             // addToolStripMenuItem6
@@ -631,27 +623,27 @@
             this.updateToolStripMenuItem7,
             this.deleteToolStripMenuItem6});
             this.supplierToolStripMenuItem1.Name = "supplierToolStripMenuItem1";
-            this.supplierToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.supplierToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
             this.supplierToolStripMenuItem1.Text = "Supplier";
             // 
             // addToolStripMenuItem7
             // 
             this.addToolStripMenuItem7.Name = "addToolStripMenuItem7";
-            this.addToolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem7.Size = new System.Drawing.Size(112, 22);
             this.addToolStripMenuItem7.Text = "Add";
             this.addToolStripMenuItem7.Click += new System.EventHandler(this.addToolStripMenuItem7_Click);
             // 
             // updateToolStripMenuItem7
             // 
             this.updateToolStripMenuItem7.Name = "updateToolStripMenuItem7";
-            this.updateToolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.updateToolStripMenuItem7.Size = new System.Drawing.Size(112, 22);
             this.updateToolStripMenuItem7.Text = "Update";
             this.updateToolStripMenuItem7.Click += new System.EventHandler(this.updateToolStripMenuItem7_Click);
             // 
             // deleteToolStripMenuItem6
             // 
             this.deleteToolStripMenuItem6.Name = "deleteToolStripMenuItem6";
-            this.deleteToolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem6.Size = new System.Drawing.Size(112, 22);
             this.deleteToolStripMenuItem6.Text = "Delete";
             this.deleteToolStripMenuItem6.Click += new System.EventHandler(this.deleteToolStripMenuItem6_Click);
             // 
@@ -667,10 +659,11 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(605, 98);
+            this.textBox1.Location = new System.Drawing.Point(605, 125);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(134, 20);
             this.textBox1.TabIndex = 3;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Search
             // 
@@ -678,7 +671,7 @@
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(75, 23);
             this.Search.TabIndex = 4;
-            this.Search.Text = "Search";
+            this.Search.Text = "Clear";
             this.Search.UseVisualStyleBackColor = true;
             this.Search.Click += new System.EventHandler(this.Search_Click);
             // 
@@ -821,11 +814,20 @@
             // 
             this.weaponDetailsTableAdapter.ClearBeforeFill = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(605, 71);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(134, 21);
+            this.comboBox1.TabIndex = 17;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePickerEnd);
             this.Controls.Add(this.dateTimePickerStart);
@@ -905,7 +907,6 @@
         private System.Windows.Forms.BindingSource weaponDetailsBindingSource;
         private ColdWeaponStoreDataSetTableAdapters.WeaponDetailsTableAdapter weaponDetailsTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem suppliersToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button Search;
         private System.Windows.Forms.Label label1;
@@ -959,6 +960,7 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem6;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
